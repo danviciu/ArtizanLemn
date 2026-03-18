@@ -1,0 +1,1131 @@
+[
+  {
+    "title": "Bar Rustic din Lemn",
+    "slug": "bar-rustic-din-lemn",
+    "category": "piese-personalizate",
+    "confidence": 0.91,
+    "sourceFolders": [
+      "bar"
+    ],
+    "coverSource": "bar\\Bar Rustic din Lemn.png",
+    "gallerySources": [
+      "bar\\Bar Rustic din Lemn.png",
+      "bar\\Bar Rustic din Lemn A.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "bar\\Bar Rustic din Lemn.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "bar\\Bar Rustic din Lemn A.png"
+      }
+    ]
+  },
+  {
+    "title": "Biblioteca Bucur",
+    "slug": "biblioteca-bucur",
+    "category": "biblioteci",
+    "confidence": 0.91,
+    "sourceFolders": [
+      "biblioteca"
+    ],
+    "coverSource": "biblioteca\\biblioteca bucur.png",
+    "gallerySources": [
+      "biblioteca\\biblioteca bucur.png",
+      "biblioteca\\biblioteca bucur A.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "biblioteca\\biblioteca bucur.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "biblioteca\\biblioteca bucur A.png"
+      }
+    ]
+  },
+  {
+    "title": "Blat Stejar Tohanita",
+    "slug": "blat-stejar-tohanita",
+    "category": "mese",
+    "confidence": 0.81,
+    "sourceFolders": [
+      "blaturi"
+    ],
+    "coverSource": "blaturi\\blat stejar Tohanita.png",
+    "gallerySources": [
+      "blaturi\\blat stejar Tohanita.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "blaturi\\blat stejar Tohanita.png"
+      }
+    ]
+  },
+  {
+    "title": "Masa din Cires",
+    "slug": "masa-din-cires",
+    "category": "mese",
+    "confidence": 0.81,
+    "sourceFolders": [
+      "blaturi"
+    ],
+    "coverSource": "blaturi\\Masa din cires.png",
+    "gallerySources": [
+      "blaturi\\Masa din cires.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "blaturi\\Masa din cires.png"
+      }
+    ]
+  },
+  {
+    "title": "Bucatarie Rustica Dan",
+    "slug": "bucatarie-rustica-dan",
+    "category": "bucatarii",
+    "confidence": 0.91,
+    "sourceFolders": [
+      "bucatarie"
+    ],
+    "coverSource": "bucatarie\\Bucatarie rustica Dan.png",
+    "gallerySources": [
+      "bucatarie\\Bucatarie rustica Dan.png",
+      "bucatarie\\Bucatarie rustica Dan A.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "bucatarie\\Bucatarie rustica Dan.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "bucatarie\\Bucatarie rustica Dan A.png"
+      }
+    ]
+  },
+  {
+    "title": "Bucatarie Rustica Eleganta Comandau",
+    "slug": "bucatarie-rustica-eleganta-comandau",
+    "category": "bucatarii",
+    "confidence": 0.91,
+    "sourceFolders": [
+      "bucatarie"
+    ],
+    "coverSource": "bucatarie\\Bucătărie Rustică Elegantă Comandau.png",
+    "gallerySources": [
+      "bucatarie\\Bucătărie Rustică Elegantă Comandau.png",
+      "bucatarie\\Bucătărie Rustică Elegantă Comandau A.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "bucatarie\\Bucătărie Rustică Elegantă Comandau.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "bucatarie\\Bucătărie Rustică Elegantă Comandau A.png"
+      }
+    ]
+  },
+  {
+    "title": "Masa Lemn Profesionala",
+    "slug": "masa-lemn-profesionala",
+    "category": "mese",
+    "confidence": 0.81,
+    "sourceFolders": [
+      "cadouri"
+    ],
+    "coverSource": "cadouri\\20251125_1240_Masă Lemn Profesională_remix_01kax9g7nmftcs4bk2csrxzq0y.png",
+    "gallerySources": [
+      "cadouri\\20251125_1240_Masă Lemn Profesională_remix_01kax9g7nmftcs4bk2csrxzq0y.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "cadouri\\20251125_1240_Masă Lemn Profesională_remix_01kax9g7nmftcs4bk2csrxzq0y.png"
+      }
+    ]
+  },
+  {
+    "title": "Cutie Lemn Profesionala",
+    "slug": "cutie-lemn-profesionala",
+    "category": "obiecte-decorative",
+    "confidence": 0.81,
+    "sourceFolders": [
+      "cadouri"
+    ],
+    "coverSource": "cadouri\\20251125_1307_Cutie Lemn Profesională_remix_01kaxb1ygje3k9bxj92wj214pg.png",
+    "gallerySources": [
+      "cadouri\\20251125_1307_Cutie Lemn Profesională_remix_01kaxb1ygje3k9bxj92wj214pg.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "cadouri\\20251125_1307_Cutie Lemn Profesională_remix_01kaxb1ygje3k9bxj92wj214pg.png"
+      }
+    ]
+  },
+  {
+    "title": "Suport Lemn Lustruit",
+    "slug": "suport-lemn-lustruit",
+    "category": "obiecte-decorative",
+    "confidence": 0.7,
+    "sourceFolders": [
+      "cadouri",
+      "jucarii"
+    ],
+    "coverSource": "cadouri\\20251125_1323_Suport Lemn Lustruit_remix_01kaxbx4h7f7896g1t99z6eted.png",
+    "gallerySources": [
+      "cadouri\\20251125_1323_Suport Lemn Lustruit_remix_01kaxbx4h7f7896g1t99z6eted.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "cadouri\\20251125_1323_Suport Lemn Lustruit_remix_01kaxbx4h7f7896g1t99z6eted.png"
+      }
+    ]
+  },
+  {
+    "title": "Cutie Lemn Detaliata",
+    "slug": "cutie-lemn-detaliata",
+    "category": "obiecte-decorative",
+    "confidence": 0.62,
+    "sourceFolders": [
+      "cadouri",
+      "jucarii"
+    ],
+    "coverSource": "cadouri\\20251125_1324_Cutie Lemn Detaliată_remix_01kaxc0a2nfrgtygmsk59ryeqd.png",
+    "gallerySources": [
+      "cadouri\\20251125_1324_Cutie Lemn Detaliată_remix_01kaxc0a2nfrgtygmsk59ryeqd.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "detail",
+        "source": "cadouri\\20251125_1324_Cutie Lemn Detaliată_remix_01kaxc0a2nfrgtygmsk59ryeqd.png"
+      }
+    ]
+  },
+  {
+    "title": "Cutie Lemn Eleganta",
+    "slug": "cutie-lemn-eleganta",
+    "category": "obiecte-decorative",
+    "confidence": 0.7,
+    "sourceFolders": [
+      "cadouri",
+      "jucarii"
+    ],
+    "coverSource": "cadouri\\20251125_1327_Cutie Lemn Elegantă_remix_01kaxc5mx5f318aakkj0adfs09.png",
+    "gallerySources": [
+      "cadouri\\20251125_1327_Cutie Lemn Elegantă_remix_01kaxc5mx5f318aakkj0adfs09.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "cadouri\\20251125_1327_Cutie Lemn Elegantă_remix_01kaxc5mx5f318aakkj0adfs09.png"
+      }
+    ]
+  },
+  {
+    "title": "Prezentare Suport Telefon",
+    "slug": "prezentare-suport-telefon",
+    "category": "obiecte-decorative",
+    "confidence": 0.7,
+    "sourceFolders": [
+      "cadouri",
+      "jucarii"
+    ],
+    "coverSource": "cadouri\\20251125_1329_Prezentare Suport Telefon_remix_01kaxc7radfmsbzp76xz23vcry.png",
+    "gallerySources": [
+      "cadouri\\20251125_1329_Prezentare Suport Telefon_remix_01kaxc7radfmsbzp76xz23vcry.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "cadouri\\20251125_1329_Prezentare Suport Telefon_remix_01kaxc7radfmsbzp76xz23vcry.png"
+      }
+    ]
+  },
+  {
+    "title": "Cartea in Suport Diagonal",
+    "slug": "cartea-in-suport-diagonal",
+    "category": "obiecte-decorative",
+    "confidence": 0.81,
+    "sourceFolders": [
+      "cadouri"
+    ],
+    "coverSource": "cadouri\\20251125_1512_Cartea în Suport Diagonal_remix_01kaxj4hh9fz49a7nsb0tw83tp.png",
+    "gallerySources": [
+      "cadouri\\20251125_1512_Cartea în Suport Diagonal_remix_01kaxj4hh9fz49a7nsb0tw83tp.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "cadouri\\20251125_1512_Cartea în Suport Diagonal_remix_01kaxj4hh9fz49a7nsb0tw83tp.png"
+      }
+    ]
+  },
+  {
+    "title": "Dulap Lemn Profesionist",
+    "slug": "dulap-lemn-profesionist",
+    "category": "piese-personalizate",
+    "confidence": 0.81,
+    "sourceFolders": [
+      "din-palet"
+    ],
+    "coverSource": "din palet\\20251125_1218_Dulap Lemn Profesionist_remix_01kax87d71e3stbzymdf550533.png",
+    "gallerySources": [
+      "din palet\\20251125_1218_Dulap Lemn Profesionist_remix_01kax87d71e3stbzymdf550533.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "din palet\\20251125_1218_Dulap Lemn Profesionist_remix_01kax87d71e3stbzymdf550533.png"
+      }
+    ]
+  },
+  {
+    "title": "Masa din Paleti",
+    "slug": "masa-din-paleti",
+    "category": "mese",
+    "confidence": 0.7,
+    "sourceFolders": [
+      "din-palet",
+      "rafturi"
+    ],
+    "coverSource": "din palet\\20251125_1218_Masa Din Paleți_remix_01kax86px7ew2brbtpchg898j5.png",
+    "gallerySources": [
+      "din palet\\20251125_1218_Masa Din Paleți_remix_01kax86px7ew2brbtpchg898j5.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "din palet\\20251125_1218_Masa Din Paleți_remix_01kax86px7ew2brbtpchg898j5.png"
+      }
+    ]
+  },
+  {
+    "title": "Tavan cu Grinzi Ornamentale",
+    "slug": "tavan-cu-grinzi-ornamentale",
+    "category": "piese-personalizate",
+    "confidence": 0.81,
+    "sourceFolders": [
+      "diverse"
+    ],
+    "coverSource": "diverse\\20251125_1227_Tavan cu Grinzi Ornamentale_remix_01kax8nxgafv0rph597fs45nyt.png",
+    "gallerySources": [
+      "diverse\\20251125_1227_Tavan cu Grinzi Ornamentale_remix_01kax8nxgafv0rph597fs45nyt.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "diverse\\20251125_1227_Tavan cu Grinzi Ornamentale_remix_01kax8nxgafv0rph597fs45nyt.png"
+      }
+    ]
+  },
+  {
+    "title": "Ghiveci Stejar Ania",
+    "slug": "ghiveci-stejar-ania",
+    "category": "obiecte-decorative",
+    "confidence": 0.91,
+    "sourceFolders": [
+      "diverse"
+    ],
+    "coverSource": "diverse\\Ghiveci stejar Ania.png",
+    "gallerySources": [
+      "diverse\\Ghiveci stejar Ania.png",
+      "diverse\\Ghiveci stejar Ania A.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "diverse\\Ghiveci stejar Ania.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "diverse\\Ghiveci stejar Ania A.png"
+      }
+    ]
+  },
+  {
+    "title": "Raft Tip Montesori",
+    "slug": "raft-tip-montesori",
+    "category": "biblioteci",
+    "confidence": 0.91,
+    "sourceFolders": [
+      "diverse"
+    ],
+    "coverSource": "diverse\\Raft tip montesori.png",
+    "gallerySources": [
+      "diverse\\Raft tip montesori.png",
+      "diverse\\Raft tip montesori A.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "diverse\\Raft tip montesori.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "diverse\\Raft tip montesori A.png"
+      }
+    ]
+  },
+  {
+    "title": "Dulap de Baie Comandau",
+    "slug": "dulap-de-baie-comandau",
+    "category": "dulapuri-de-baie",
+    "confidence": 0.96,
+    "sourceFolders": [
+      "dulap-de-baie"
+    ],
+    "coverSource": "dulap de baie\\Dulap de baie Comandau.png",
+    "gallerySources": [
+      "dulap de baie\\Dulap de baie Comandau.png",
+      "dulap de baie\\Dulap de baie Comandau B.png",
+      "dulap de baie\\Dulap de baie Comandau A.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "dulap de baie\\Dulap de baie Comandau.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "dulap de baie\\Dulap de baie Comandau B.png"
+      },
+      {
+        "index": 2,
+        "role": "alternate",
+        "source": "dulap de baie\\Dulap de baie Comandau A.png"
+      }
+    ]
+  },
+  {
+    "title": "Dulap de Baie Dana",
+    "slug": "dulap-de-baie-dana",
+    "category": "dulapuri-de-baie",
+    "confidence": 0.96,
+    "sourceFolders": [
+      "dulap-de-baie"
+    ],
+    "coverSource": "dulap de baie\\Dulap de baie Dana.png",
+    "gallerySources": [
+      "dulap de baie\\Dulap de baie Dana.png",
+      "dulap de baie\\Dulap de baie Dana B.png",
+      "dulap de baie\\Dulap de baie Dana A.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "dulap de baie\\Dulap de baie Dana.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "dulap de baie\\Dulap de baie Dana B.png"
+      },
+      {
+        "index": 2,
+        "role": "alternate",
+        "source": "dulap de baie\\Dulap de baie Dana A.png"
+      }
+    ]
+  },
+  {
+    "title": "Dulap de Baie Daniela",
+    "slug": "dulap-de-baie-daniela",
+    "category": "dulapuri-de-baie",
+    "confidence": 0.96,
+    "sourceFolders": [
+      "dulap-de-baie"
+    ],
+    "coverSource": "dulap de baie\\Dulap de baie Daniela.png",
+    "gallerySources": [
+      "dulap de baie\\Dulap de baie Daniela.png",
+      "dulap de baie\\Dulap de baie Daniela A.png",
+      "dulap de baie\\Dulap de baie Daniela B.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "dulap de baie\\Dulap de baie Daniela.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "dulap de baie\\Dulap de baie Daniela A.png"
+      },
+      {
+        "index": 2,
+        "role": "alternate",
+        "source": "dulap de baie\\Dulap de baie Daniela B.png"
+      }
+    ]
+  },
+  {
+    "title": "Dulap de Baie Phila",
+    "slug": "dulap-de-baie-phila",
+    "category": "dulapuri-de-baie",
+    "confidence": 0.91,
+    "sourceFolders": [
+      "dulap-de-baie"
+    ],
+    "coverSource": "dulap de baie\\Dulap de baie Phila.png",
+    "gallerySources": [
+      "dulap de baie\\Dulap de baie Phila.png",
+      "dulap de baie\\Dulap de baie Phila A.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "dulap de baie\\Dulap de baie Phila.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "dulap de baie\\Dulap de baie Phila A.png"
+      }
+    ]
+  },
+  {
+    "title": "Dulap de Baie Ramona",
+    "slug": "dulap-de-baie-ramona",
+    "category": "dulapuri-de-baie",
+    "confidence": 0.98,
+    "sourceFolders": [
+      "dulap-de-baie"
+    ],
+    "coverSource": "dulap de baie\\Dulap de baie Ramona.png",
+    "gallerySources": [
+      "dulap de baie\\Dulap de baie Ramona.png",
+      "dulap de baie\\Dulap de baie Ramona B.png",
+      "dulap de baie\\Dulap de baie Ramona A.png",
+      "dulap de baie\\Dulap de baie Ramona C.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "dulap de baie\\Dulap de baie Ramona.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "dulap de baie\\Dulap de baie Ramona B.png"
+      },
+      {
+        "index": 2,
+        "role": "alternate",
+        "source": "dulap de baie\\Dulap de baie Ramona A.png"
+      },
+      {
+        "index": 3,
+        "role": "alternate",
+        "source": "dulap de baie\\Dulap de baie Ramona C.png"
+      }
+    ]
+  },
+  {
+    "title": "Foisor Paul",
+    "slug": "foisor-paul",
+    "category": "exterior-lemn",
+    "confidence": 0.96,
+    "sourceFolders": [
+      "foisoare"
+    ],
+    "coverSource": "foisoare\\Foisor Paul.png",
+    "gallerySources": [
+      "foisoare\\Foisor Paul.png",
+      "foisoare\\Foisor Paul A.png",
+      "foisoare\\Foisor Paul B.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "foisoare\\Foisor Paul.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "foisoare\\Foisor Paul A.png"
+      },
+      {
+        "index": 2,
+        "role": "alternate",
+        "source": "foisoare\\Foisor Paul B.png"
+      }
+    ]
+  },
+  {
+    "title": "Intrare cu Element Rustice",
+    "slug": "intrare-cu-element-rustice",
+    "category": "exterior-lemn",
+    "confidence": 0.81,
+    "sourceFolders": [
+      "marchize"
+    ],
+    "coverSource": "marchize\\20251125_1245_Intrare Cu Element Rustice_remix_01kax9pw5fe0yvgfmt9bam4z7q.png",
+    "gallerySources": [
+      "marchize\\20251125_1245_Intrare Cu Element Rustice_remix_01kax9pw5fe0yvgfmt9bam4z7q.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "marchize\\20251125_1245_Intrare Cu Element Rustice_remix_01kax9pw5fe0yvgfmt9bam4z7q.png"
+      }
+    ]
+  },
+  {
+    "title": "Intrare cu Detalii Arhitecturale",
+    "slug": "intrare-cu-detalii-arhitecturale",
+    "category": "exterior-lemn",
+    "confidence": 0.81,
+    "sourceFolders": [
+      "marchize"
+    ],
+    "coverSource": "marchize\\20251125_1247_Intrare cu Detalii Arhitecturale_remix_01kax9tqv3fqcr7ag5sjpgac6k.png",
+    "gallerySources": [
+      "marchize\\20251125_1247_Intrare cu Detalii Arhitecturale_remix_01kax9tqv3fqcr7ag5sjpgac6k.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "marchize\\20251125_1247_Intrare cu Detalii Arhitecturale_remix_01kax9tqv3fqcr7ag5sjpgac6k.png"
+      }
+    ]
+  },
+  {
+    "title": "Intrare Profesionala Casa",
+    "slug": "intrare-profesionala-casa",
+    "category": "exterior-lemn",
+    "confidence": 0.81,
+    "sourceFolders": [
+      "marchize"
+    ],
+    "coverSource": "marchize\\20251125_1457_Intrare Profesională Casă_remix_01kaxh8wxrfbk80n7076mxahzk.png",
+    "gallerySources": [
+      "marchize\\20251125_1457_Intrare Profesională Casă_remix_01kaxh8wxrfbk80n7076mxahzk.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "marchize\\20251125_1457_Intrare Profesională Casă_remix_01kaxh8wxrfbk80n7076mxahzk.png"
+      }
+    ]
+  },
+  {
+    "title": "Intrare cu Copertina Moderna",
+    "slug": "intrare-cu-copertina-moderna",
+    "category": "exterior-lemn",
+    "confidence": 0.81,
+    "sourceFolders": [
+      "marchize"
+    ],
+    "coverSource": "marchize\\20251125_1500_Intrare Cu Copertină Modernă_remix_01kaxhfam4ejt9sh9pf0pkx3z8.png",
+    "gallerySources": [
+      "marchize\\20251125_1500_Intrare Cu Copertină Modernă_remix_01kaxhfam4ejt9sh9pf0pkx3z8.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "marchize\\20251125_1500_Intrare Cu Copertină Modernă_remix_01kaxhfam4ejt9sh9pf0pkx3z8.png"
+      }
+    ]
+  },
+  {
+    "title": "Masa Artizan Lemn",
+    "slug": "masa-artizan-lemn",
+    "category": "mese",
+    "confidence": 0.91,
+    "sourceFolders": [
+      "mese"
+    ],
+    "coverSource": "mese\\Masa ArtizanLemn.png",
+    "gallerySources": [
+      "mese\\Masa ArtizanLemn.png",
+      "mese\\Masa ArtizanLemn A.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "mese\\Masa ArtizanLemn.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "mese\\Masa ArtizanLemn A.png"
+      }
+    ]
+  },
+  {
+    "title": "Masa Ciresu",
+    "slug": "masa-ciresu",
+    "category": "mese",
+    "confidence": 0.91,
+    "sourceFolders": [
+      "mese"
+    ],
+    "coverSource": "mese\\Masa Ciresu.png",
+    "gallerySources": [
+      "mese\\Masa Ciresu.png",
+      "mese\\Masa Ciresu A.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "mese\\Masa Ciresu.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "mese\\Masa Ciresu A.png"
+      }
+    ]
+  },
+  {
+    "title": "Masa Coman",
+    "slug": "masa-coman",
+    "category": "mese",
+    "confidence": 0.98,
+    "sourceFolders": [
+      "mese"
+    ],
+    "coverSource": "mese\\Masa Coman.png",
+    "gallerySources": [
+      "mese\\Masa Coman.png",
+      "mese\\Masa Coman A.png",
+      "mese\\Masa Coman B.png",
+      "mese\\Masa Coman C.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "mese\\Masa Coman.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "mese\\Masa Coman A.png"
+      },
+      {
+        "index": 2,
+        "role": "alternate",
+        "source": "mese\\Masa Coman B.png"
+      },
+      {
+        "index": 3,
+        "role": "alternate",
+        "source": "mese\\Masa Coman C.png"
+      }
+    ]
+  },
+  {
+    "title": "Masa cu Banci H",
+    "slug": "masa-cu-banci-h",
+    "category": "mese",
+    "confidence": 0.91,
+    "sourceFolders": [
+      "mese"
+    ],
+    "coverSource": "mese\\Masa cu banci H.png",
+    "gallerySources": [
+      "mese\\Masa cu banci H.png",
+      "mese\\Masa cu banci H A.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "mese\\Masa cu banci H.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "mese\\Masa cu banci H A.png"
+      }
+    ]
+  },
+  {
+    "title": "Pat Bogdan",
+    "slug": "pat-bogdan",
+    "category": "paturi",
+    "confidence": 0.91,
+    "sourceFolders": [
+      "paturi"
+    ],
+    "coverSource": "paturi\\Pat Bogdan.png",
+    "gallerySources": [
+      "paturi\\Pat Bogdan.png",
+      "paturi\\Pat Bogdan A.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "paturi\\Pat Bogdan.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "paturi\\Pat Bogdan A.png"
+      }
+    ]
+  },
+  {
+    "title": "Pat Daniela",
+    "slug": "pat-daniela",
+    "category": "paturi",
+    "confidence": 0.91,
+    "sourceFolders": [
+      "paturi"
+    ],
+    "coverSource": "paturi\\Pat Daniela.png",
+    "gallerySources": [
+      "paturi\\Pat Daniela.png",
+      "paturi\\Pat Daniela A.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "paturi\\Pat Daniela.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "paturi\\Pat Daniela A.png"
+      }
+    ]
+  },
+  {
+    "title": "Pat Florin",
+    "slug": "pat-florin",
+    "category": "paturi",
+    "confidence": 0.91,
+    "sourceFolders": [
+      "paturi"
+    ],
+    "coverSource": "paturi\\Pat Florin.png",
+    "gallerySources": [
+      "paturi\\Pat Florin.png",
+      "paturi\\Pat Florin A.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "paturi\\Pat Florin.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "paturi\\Pat Florin A.png"
+      }
+    ]
+  },
+  {
+    "title": "Pat Mihai",
+    "slug": "pat-mihai",
+    "category": "paturi",
+    "confidence": 0.91,
+    "sourceFolders": [
+      "paturi"
+    ],
+    "coverSource": "paturi\\Pat Mihai.png",
+    "gallerySources": [
+      "paturi\\Pat Mihai.png",
+      "paturi\\Pat Mihai A.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "paturi\\Pat Mihai.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "paturi\\Pat Mihai A.png"
+      }
+    ]
+  },
+  {
+    "title": "Poarta Stejar Radu",
+    "slug": "poarta-stejar-radu",
+    "category": "exterior-lemn",
+    "confidence": 0.96,
+    "sourceFolders": [
+      "porti"
+    ],
+    "coverSource": "porti\\Poarta stejar Radu.png",
+    "gallerySources": [
+      "porti\\Poarta stejar Radu.png",
+      "porti\\Poarta stejar Radu B.png",
+      "porti\\Poarta stejar Radu A.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "porti\\Poarta stejar Radu.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "porti\\Poarta stejar Radu B.png"
+      },
+      {
+        "index": 2,
+        "role": "alternate",
+        "source": "porti\\Poarta stejar Radu A.png"
+      }
+    ]
+  },
+  {
+    "title": "Riflaj Panou",
+    "slug": "riflaj-panou",
+    "category": "riflaje",
+    "confidence": 0.81,
+    "sourceFolders": [
+      "riflaj"
+    ],
+    "coverSource": "riflaj\\riflaj-panou.png",
+    "gallerySources": [
+      "riflaj\\riflaj-panou.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "riflaj\\riflaj-panou.png"
+      }
+    ]
+  },
+  {
+    "title": "Riflaj Scara",
+    "slug": "riflaj-scara",
+    "category": "riflaje",
+    "confidence": 0.81,
+    "sourceFolders": [
+      "riflaj"
+    ],
+    "coverSource": "riflaj\\riflaj-scara.png",
+    "gallerySources": [
+      "riflaj\\riflaj-scara.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "riflaj\\riflaj-scara.png"
+      }
+    ]
+  },
+  {
+    "title": "Scara Adela",
+    "slug": "scara-adela",
+    "category": "scari",
+    "confidence": 0.81,
+    "sourceFolders": [
+      "scari"
+    ],
+    "coverSource": "scari\\Scara Adela.png",
+    "gallerySources": [
+      "scari\\Scara Adela.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "scari\\Scara Adela.png"
+      }
+    ]
+  },
+  {
+    "title": "Scara Bela",
+    "slug": "scara-bela",
+    "category": "scari",
+    "confidence": 0.91,
+    "sourceFolders": [
+      "scari"
+    ],
+    "coverSource": "scari\\Scara Bela.png",
+    "gallerySources": [
+      "scari\\Scara Bela.png",
+      "scari\\Scara Bela A.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "scari\\Scara Bela.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "scari\\Scara Bela A.png"
+      }
+    ]
+  },
+  {
+    "title": "Scara Bogdan",
+    "slug": "scara-bogdan",
+    "category": "scari",
+    "confidence": 0.91,
+    "sourceFolders": [
+      "scari"
+    ],
+    "coverSource": "scari\\Scara Bogdan.png",
+    "gallerySources": [
+      "scari\\Scara Bogdan.png",
+      "scari\\Scara Bogdan A.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "scari\\Scara Bogdan.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "scari\\Scara Bogdan A.png"
+      }
+    ]
+  },
+  {
+    "title": "Scara Lorand",
+    "slug": "scara-lorand",
+    "category": "scari",
+    "confidence": 0.91,
+    "sourceFolders": [
+      "scari"
+    ],
+    "coverSource": "scari\\Scara Lorand.png",
+    "gallerySources": [
+      "scari\\Scara Lorand.png",
+      "scari\\Scara Lorand A.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "scari\\Scara Lorand.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "scari\\Scara Lorand A.png"
+      }
+    ]
+  },
+  {
+    "title": "Scara Podul",
+    "slug": "scara-podul",
+    "category": "scari",
+    "confidence": 0.91,
+    "sourceFolders": [
+      "scari"
+    ],
+    "coverSource": "scari\\Scara Podul.png",
+    "gallerySources": [
+      "scari\\Scara Podul.png",
+      "scari\\Scara Podul A.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "scari\\Scara Podul.png"
+      },
+      {
+        "index": 1,
+        "role": "alternate",
+        "source": "scari\\Scara Podul A.png"
+      }
+    ]
+  },
+  {
+    "title": "Usa din Lemn",
+    "slug": "usa-din-lemn",
+    "category": "exterior-lemn",
+    "confidence": 0.81,
+    "sourceFolders": [
+      "usi"
+    ],
+    "coverSource": "usi\\20251125_1334_Ușă din Lemn_remix_01kaxcjb6dfq6b8k42st80qtzf.png",
+    "gallerySources": [
+      "usi\\20251125_1334_Ușă din Lemn_remix_01kaxcjb6dfq6b8k42st80qtzf.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "usi\\20251125_1334_Ușă din Lemn_remix_01kaxcjb6dfq6b8k42st80qtzf.png"
+      }
+    ]
+  },
+  {
+    "title": "Intrare si Fereastra Eleganta",
+    "slug": "intrare-si-fereastra-eleganta",
+    "category": "exterior-lemn",
+    "confidence": 0.81,
+    "sourceFolders": [
+      "usi"
+    ],
+    "coverSource": "usi\\20251125_1535_Intrare și Fereastră Elegantă_remix_01kaxkf0v7e978b0255zy7hvq5.png",
+    "gallerySources": [
+      "usi\\20251125_1535_Intrare și Fereastră Elegantă_remix_01kaxkf0v7e978b0255zy7hvq5.png"
+    ],
+    "roles": [
+      {
+        "index": 0,
+        "role": "overall",
+        "source": "usi\\20251125_1535_Intrare și Fereastră Elegantă_remix_01kaxkf0v7e978b0255zy7hvq5.png"
+      }
+    ]
+  }
+]

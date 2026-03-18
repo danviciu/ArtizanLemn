@@ -1,26 +1,107 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #f6f0e9;
+  --paper-strong: #ede3d7;
+  --sand-100: #e4d7c9;
+  --sand-200: #d8c7b3;
+  --sand-300: #c3af95;
+  --sand-350: #ad9679;
+  --wood-700: #5e4533;
+  --wood-800: #3f2c20;
+  --wood-900: #2e1f16;
+  --wood-950: #1a120d;
+  --moss-400: #7f8e5f;
+  --moss-600: #59653f;
+  --bronze-300: #b78f58;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-cormorant);
+  --color-sand-50: var(--paper);
+  --color-sand-100: var(--paper-strong);
+  --color-sand-200: var(--sand-100);
+  --color-sand-300: var(--sand-200);
+  --color-sand-400: var(--sand-300);
+  --color-sand-500: var(--sand-350);
+  --color-wood-700: var(--wood-700);
+  --color-wood-800: var(--wood-800);
+  --color-wood-900: var(--wood-900);
+  --color-wood-950: var(--wood-950);
+  --color-moss-400: var(--moss-400);
+  --color-moss-600: var(--moss-600);
+  --color-bronze-300: var(--bronze-300);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background:
+      radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.5), transparent 45%),
+      radial-gradient(circle at 85% 10%, rgba(195, 175, 149, 0.22), transparent 35%),
+      var(--paper);
+    color: var(--wood-950);
+    font-family: var(--font-manrope), sans-serif;
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--wood-950);
+    font-family: var(--font-cormorant), serif;
+    line-height: 1.1;
+  }
+
+  p {
+    line-height: 1.75;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  ::selection {
+    background: rgba(63, 44, 32, 0.86);
+    color: #f6f0e9;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .section-space {
+    @apply py-16 md:py-24;
+  }
+
+  .luxury-card {
+    @apply rounded-3xl border border-sand-300/70 bg-white/90 shadow-[0_18px_45px_-30px_rgba(44,30,20,0.6)];
+  }
+
+  .subtle-separator {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-sand-400/80 to-transparent;
+  }
+
+  .editorial-kicker {
+    @apply text-xs font-semibold uppercase tracking-[0.26em] text-wood-700;
+  }
+
+  .product-eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.22em] text-wood-800/80;
+  }
+
+  .product-title {
+    @apply text-wood-900;
+  }
+
+  .product-body {
+    @apply text-wood-800;
+  }
+
+  .product-body-soft {
+    @apply text-wood-800/85;
+  }
+
+  .product-tag {
+    @apply rounded-full border border-sand-400/90 bg-sand-100/85 px-3 py-1 text-xs font-medium text-wood-800;
+  }
 }
