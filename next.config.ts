@@ -46,7 +46,28 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+function getSupabaseRemotePatterns(): URL[] {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
+  if (!supabaseUrl) {
+    return [];
+  }
+
+  try {
+    const parsedUrl = new URL(supabaseUrl);
+    parsedUrl.pathname = "/storage/v1/object/public/**";
+    parsedUrl.search = "";
+    parsedUrl.hash = "";
+
+    return [parsedUrl];
+  } catch {
+    return [];
+  }
+}
+
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: getSupabaseRemotePatterns(),
+  },
   async headers() {
     return [
       {

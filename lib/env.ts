@@ -2,6 +2,7 @@ import "server-only";
 
 const DEFAULT_NOTIFICATION_EMAILS = ["contact@artizanlemn.ro"];
 const DEFAULT_NOTIFICATION_EMAIL_FROM = "Artizan Lemn <onboarding@resend.dev>";
+const DEFAULT_PRODUCT_IMAGES_BUCKET = "catalog-images";
 
 function getRequiredEnvVar(name: string) {
   const value = process.env[name];
@@ -46,4 +47,9 @@ export function getNotificationEmails() {
 
 export function getNotificationEmailFrom() {
   return process.env.NOTIFICATION_EMAIL_FROM?.trim() || DEFAULT_NOTIFICATION_EMAIL_FROM;
+}
+
+export function getProductImagesBucketName() {
+  const configuredBucket = process.env.PRODUCT_IMAGES_BUCKET?.trim();
+  return configuredBucket || DEFAULT_PRODUCT_IMAGES_BUCKET;
 }

@@ -45,3 +45,15 @@ for each row
 execute function public.set_catalog_products_updated_at();
 
 alter table public.catalog_products enable row level security;
+
+-- Optional: bucket public pentru imagini produse din admin.
+-- Daca folosesti numele implicit, endpoint-ul admin poate crea bucket-ul automat.
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values (
+  'catalog-images',
+  'catalog-images',
+  true,
+  8388608,
+  array['image/jpeg', 'image/png', 'image/webp', 'image/avif', 'image/gif']
+)
+on conflict (id) do nothing;

@@ -52,6 +52,7 @@ Copiaza `.env.local.example` in `.env.local` si completeaza valorile:
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 - `SUPABASE_SERVICE_ROLE_KEY`
+- `PRODUCT_IMAGES_BUCKET` (optional, implicit `catalog-images` pentru upload imagini produse din admin)
 - `RESEND_API_KEY`
 - `NOTIFICATION_EMAIL_FROM` (ex: `Artizan Lemn <noreply@artizanlemn.ro>`, domeniu verificat in Resend)
 - `NOTIFICATION_EMAIL` (una sau mai multe adrese separate prin virgula)
@@ -79,6 +80,7 @@ Ruleaza in Supabase SQL Editor:
   - listare produse persistente din `catalog_products`
   - adaugare produs nou (persistenta reala)
   - editare produs existent (persistenta reala)
+  - upload imagini direct din formular in Supabase Storage (bucket public)
   - fallback local daca Supabase nu este configurat
 
 ## Nota de securitate
