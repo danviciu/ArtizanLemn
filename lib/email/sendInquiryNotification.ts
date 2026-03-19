@@ -1,6 +1,6 @@
 import "server-only";
 import { Resend } from "resend";
-import { getNotificationEmail, getResendApiKey } from "@/lib/env";
+import { getNotificationEmails, getResendApiKey } from "@/lib/env";
 
 const DEFAULT_EMAIL_FROM = "Artizan Lemn <onboarding@resend.dev>";
 
@@ -56,7 +56,7 @@ function formatSubmissionDate(dateIso: string) {
 
 export async function sendInquiryNotification(payload: InquiryNotificationPayload) {
   const resend = new Resend(getResendApiKey());
-  const toEmail = getNotificationEmail();
+  const toEmails = getNotificationEmails();
   const submittedAtLabel = formatSubmissionDate(payload.submissionDateIso);
 
   const attachmentTextBlock = payload.attachments.length
@@ -127,7 +127,7 @@ export async function sendInquiryNotification(payload: InquiryNotificationPayloa
 
   const { error } = await resend.emails.send({
     from: DEFAULT_EMAIL_FROM,
-    to: [toEmail],
+    to: toEmails,
     replyTo: payload.email,
     subject: "Noua cerere mobilier - Artizan Lemn",
     text,

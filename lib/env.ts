@@ -1,6 +1,6 @@
 import "server-only";
 
-const DEFAULT_NOTIFICATION_EMAIL = "contact@artizanlemn.ro";
+const DEFAULT_NOTIFICATION_EMAILS = ["contact@artizanlemn.ro"];
 
 function getRequiredEnvVar(name: string) {
   const value = process.env[name];
@@ -27,6 +27,18 @@ export function getResendApiKey() {
   return getRequiredEnvVar("RESEND_API_KEY");
 }
 
-export function getNotificationEmail() {
-  return process.env.NOTIFICATION_EMAIL?.trim() || DEFAULT_NOTIFICATION_EMAIL;
+function parseNotificationEmails(rawValue?: string | null) {
+  if (!rawValue) {
+    return [];
+  }
+
+  return rawValue
+    .split(",")
+    .map((email) => email.trim())
+    .filter(Boolean);
+}
+
+export function getNotificationEmails() {
+  const configuredEmails = parseNotificationEmails(process.env.NOTIFICATION_EMAIL);
+  return configuredEmails.length ? configuredEmails : DEFAULT_NOTIFICATION_EMAILS;
 }
