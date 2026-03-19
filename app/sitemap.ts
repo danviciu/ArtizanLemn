@@ -10,6 +10,9 @@ const routes = [
   "/cum-lucram",
   "/comanda-mobilier",
   "/contact",
+  "/termeni-si-conditii",
+  "/politica-confidentialitate",
+  "/politica-cookies",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

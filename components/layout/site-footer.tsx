@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { CookiePreferencesButton } from "@/components/legal/cookie-preferences-button";
 import { Container } from "@/components/ui/container";
 import { BrandLogo } from "@/components/ui/brand-logo";
+import { disputeResolutionLinks } from "@/data/legal";
 import { companyDetails, mainNavigation, socialLinks } from "@/data/navigation";
 
 export function SiteFooter() {
@@ -42,6 +44,29 @@ export function SiteFooter() {
               </Link>
             ))}
           </div>
+          <div className="space-y-2 pt-2">
+            <p className="editorial-kicker">Legal</p>
+            <div className="flex flex-col gap-2">
+              <Link
+                href="/termeni-si-conditii"
+                className="text-sm text-wood-700 transition-colors hover:text-wood-950"
+              >
+                Termeni si conditii
+              </Link>
+              <Link
+                href="/politica-confidentialitate"
+                className="text-sm text-wood-700 transition-colors hover:text-wood-950"
+              >
+                Politica de confidentialitate
+              </Link>
+              <Link
+                href="/politica-cookies"
+                className="text-sm text-wood-700 transition-colors hover:text-wood-950"
+              >
+                Politica de cookies
+              </Link>
+            </div>
+          </div>
         </div>
 
         <div className="space-y-5">
@@ -82,13 +107,41 @@ export function SiteFooter() {
               </div>
             </div>
           ) : null}
+
+          <div className="space-y-2">
+            <p className="editorial-kicker">Litigii consumatori</p>
+            <p className="text-xs text-wood-700">
+              Poti folosi mecanismele oficiale SAL si Consumer Redress UE.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <a
+                href={disputeResolutionLinks.salAnpc}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-sand-400/70 px-3 py-1.5 text-xs font-medium text-wood-700 transition-colors hover:border-wood-700 hover:text-wood-950"
+              >
+                SAL ANPC
+              </a>
+              <a
+                href={disputeResolutionLinks.consumerRedressEu}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-sand-400/70 px-3 py-1.5 text-xs font-medium text-wood-700 transition-colors hover:border-wood-700 hover:text-wood-950"
+              >
+                Consumer Redress UE
+              </a>
+            </div>
+          </div>
         </div>
       </Container>
 
       <div className="border-t border-sand-300/70 py-5">
-        <Container className="flex flex-col items-start justify-between gap-2 text-xs text-wood-700 sm:flex-row sm:items-center">
+        <Container className="flex flex-col items-start justify-between gap-2 text-xs text-wood-700 sm:flex-row sm:items-center sm:gap-4">
           <p>(c) {year} Artizan Lemn. Toate drepturile rezervate.</p>
-          <p>Mobilier premium din lemn masiv, realizat in atelier.</p>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <p>Mobilier premium din lemn masiv, realizat in atelier.</p>
+            <CookiePreferencesButton />
+          </div>
         </Container>
       </div>
     </footer>
