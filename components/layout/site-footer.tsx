@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { CookiePreferencesButton } from "@/components/legal/cookie-preferences-button";
 import { Container } from "@/components/ui/container";
@@ -111,24 +112,39 @@ export function SiteFooter() {
           <div className="space-y-2">
             <p className="editorial-kicker">Litigii consumatori</p>
             <p className="text-xs text-wood-700">
-              Poti folosi mecanismele oficiale SAL si Consumer Redress UE.
+              Poti folosi mecanismele oficiale SAL si SOL pentru solutionarea
+              disputelor.
             </p>
             <div className="flex flex-wrap gap-2">
               <a
                 href={disputeResolutionLinks.salAnpc}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full border border-sand-400/70 px-3 py-1.5 text-xs font-medium text-wood-700 transition-colors hover:border-wood-700 hover:text-wood-950"
+                className="inline-flex rounded-xl border border-sand-400/70 bg-white p-1 transition-colors hover:border-wood-700"
+                aria-label="SAL ANPC"
               >
-                SAL ANPC
+                <Image
+                  src={disputeResolutionLinks.salBadgeImage}
+                  alt="SAL ANPC"
+                  width={215}
+                  height={51}
+                  className="h-auto w-[180px]"
+                />
               </a>
               <a
-                href={disputeResolutionLinks.consumerRedressEu}
+                href={disputeResolutionLinks.odrClosureNotice}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full border border-sand-400/70 px-3 py-1.5 text-xs font-medium text-wood-700 transition-colors hover:border-wood-700 hover:text-wood-950"
+                className="inline-flex rounded-xl border border-sand-400/70 bg-white p-1 transition-colors hover:border-wood-700"
+                aria-label="SOL"
               >
-                Consumer Redress UE
+                <Image
+                  src={disputeResolutionLinks.solBadgeImage}
+                  alt="SOL"
+                  width={250}
+                  height={91}
+                  className="h-auto w-[180px]"
+                />
               </a>
             </div>
           </div>
