@@ -125,16 +125,39 @@ export async function sendInquiryNotification(payload: InquiryNotificationPayloa
     </div>
   `;
 
-  const { error } = await resend.emails.send({
-    from: DEFAULT_EMAIL_FROM,
-    to: toEmails,
-    replyTo: payload.email,
-    subject: "Noua cerere mobilier - Artizan Lemn",
-    text,
-    html,
-  });
+  const sendResults = await Promise.allSettled(
+    toEmails.map(async (toEmail) => {
+      const { error } = await resend.emails.send({
+        from: DEFAULT_EMAIL_FROM,
+        to: [toEmail],
+        replyTo: payload.email,
+        subject: "Noua cerere mobilier - Artizan Lemn",
+        text,
+        html,
+      });
 
-  if (error) {
-    throw new Error(error.message || "Trimiterea notificarii email a esuat.");
+      if (error) {
+        throw new Error(
+          `Trimiterea catre ${toEmail} a esuat: ${error.message || "eroare necunoscuta"}`,
+        );
+      }
+    }),
+  );
+
+  const failedSends = sendResults.filter(
+    (result): result is PromiseRejectedResult => result.status === "rejected",
+  );
+
+  if (failedSends.length === toEmails.length) {
+    throw new Error(
+      failedSends.map((result) => result.reason?.message || "eroare necunoscuta").join("; "),
+    );
+  }
+
+  if (failedSends.length) {
+    console.error(
+      "Trimitere partiala notificari email",
+      failedSends.map((result) => result.reason?.message || "eroare necunoscuta"),
+    );
   }
 }
