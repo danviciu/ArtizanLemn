@@ -53,6 +53,7 @@ Copiaza `.env.local.example` in `.env.local` si completeaza valorile:
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 - `SUPABASE_SERVICE_ROLE_KEY`
 - `RESEND_API_KEY`
+- `NOTIFICATION_EMAIL_FROM` (ex: `Artizan Lemn <noreply@artizanlemn.ro>`, domeniu verificat in Resend)
 - `NOTIFICATION_EMAIL` (una sau mai multe adrese separate prin virgula)
 - `ADMIN_USERNAME`
 - `ADMIN_PASSWORD`

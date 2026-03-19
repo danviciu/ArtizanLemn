@@ -1,6 +1,7 @@
 import "server-only";
 
 const DEFAULT_NOTIFICATION_EMAILS = ["contact@artizanlemn.ro"];
+const DEFAULT_NOTIFICATION_EMAIL_FROM = "Artizan Lemn <onboarding@resend.dev>";
 
 function getRequiredEnvVar(name: string) {
   const value = process.env[name];
@@ -41,4 +42,8 @@ function parseNotificationEmails(rawValue?: string | null) {
 export function getNotificationEmails() {
   const configuredEmails = parseNotificationEmails(process.env.NOTIFICATION_EMAIL);
   return configuredEmails.length ? configuredEmails : DEFAULT_NOTIFICATION_EMAILS;
+}
+
+export function getNotificationEmailFrom() {
+  return process.env.NOTIFICATION_EMAIL_FROM?.trim() || DEFAULT_NOTIFICATION_EMAIL_FROM;
 }

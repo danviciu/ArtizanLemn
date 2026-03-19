@@ -1,8 +1,10 @@
 import "server-only";
 import { Resend } from "resend";
-import { getNotificationEmails, getResendApiKey } from "@/lib/env";
-
-const DEFAULT_EMAIL_FROM = "Artizan Lemn <onboarding@resend.dev>";
+import {
+  getNotificationEmailFrom,
+  getNotificationEmails,
+  getResendApiKey,
+} from "@/lib/env";
 
 export type InquiryNotificationAttachment = {
   name: string;
@@ -56,6 +58,7 @@ function formatSubmissionDate(dateIso: string) {
 
 export async function sendInquiryNotification(payload: InquiryNotificationPayload) {
   const resend = new Resend(getResendApiKey());
+  const fromEmail = getNotificationEmailFrom();
   const toEmails = getNotificationEmails();
   const submittedAtLabel = formatSubmissionDate(payload.submissionDateIso);
 
@@ -128,7 +131,7 @@ export async function sendInquiryNotification(payload: InquiryNotificationPayloa
   const sendResults = await Promise.allSettled(
     toEmails.map(async (toEmail) => {
       const { error } = await resend.emails.send({
-        from: DEFAULT_EMAIL_FROM,
+        from: fromEmail,
         to: [toEmail],
         replyTo: payload.email,
         subject: "Noua cerere mobilier - Artizan Lemn",
