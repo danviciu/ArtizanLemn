@@ -235,3 +235,68 @@ export async function createPersistedAdminOffer(payload: AdminOfferPayload) {
 
   return mapDbRowToAdminOffer(data as DbOfferRow);
 }
+
+export async function updatePersistedAdminOffer(
+  id: string,
+  payload: AdminOfferPayload,
+) {
+  if (!hasSupabaseOfferConfig()) {
+    throw new Error(
+      "Supabase nu este configurat. Completeaza variabilele de mediu si incearca din nou.",
+    );
+  }
+
+  const subtotal = roundMoney(payload.subtotal);
+  const discountValue = roundMoney(payload.discountValue);
+  const tvaValue = roundMoney(payload.tvaValue);
+  const total = roundMoney(Math.max(0, subtotal - discountValue + tvaValue));
+  const offerNumber = payload.offerNumber?.trim() || buildOfferNumber();
+
+  const supabase = createSupabaseServiceRoleClient();
+  const { data, error } = await supabase
+    .from(OFFERS_TABLE)
+    .update({
+      inquiry_id: payload.inquiryId || null,
+      offer_number: offerNumber,
+      version: payload.version,
+      client_name: payload.client,
+      client_phone: payload.clientPhone,
+      project_title: payload.projectTitle,
+      category_slug: payload.categorySlug || null,
+      currency: payload.currency,
+      subtotal,
+      discount_value: discountValue,
+      tva_value: tvaValue,
+      total,
+      valid_until: payload.validUntil,
+      estimated_execution_days:
+        payload.estimatedExecutionDays && payload.estimatedExecutionDays > 0
+          ? payload.estimatedExecutionDays
+          : null,
+      payment_terms: payload.paymentTerms || null,
+      warranty_months:
+        payload.warrantyMonths && payload.warrantyMonths > 0
+          ? payload.warrantyMonths
+          : null,
+      internal_notes: payload.internalNotes || null,
+      status: payload.status,
+      updated_at: new Date().toISOString(),
+    })
+    .eq("id", id)
+    .select(
+      "id, inquiry_id, offer_number, version, client_name, client_phone, project_title, category_slug, currency, subtotal, discount_value, tva_value, total, valid_until, estimated_execution_days, status, payment_terms, warranty_months, internal_notes, created_at, updated_at",
+    )
+    .single();
+
+  if (error && isMissingOffersTableError(error)) {
+    throw new Error(
+      "Tabela public.offers lipseste in Supabase. Ruleaza docs/supabase-offers-setup.sql si reincearca.",
+    );
+  }
+
+  if (error || !data) {
+    throw new Error(mapDbErrorToMessage(error, "Oferta nu a putut fi actualizata."));
+  }
+
+  return mapDbRowToAdminOffer(data as DbOfferRow);
+}

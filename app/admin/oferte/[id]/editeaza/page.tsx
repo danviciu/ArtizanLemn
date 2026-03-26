@@ -3,31 +3,28 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
 import { AdminSectionHeading } from "@/components/admin/admin-section-heading";
-import { OfferDetailView } from "@/components/admin/offer-detail-view";
-import { ButtonLink } from "@/components/ui/button";
+import { OfferForm } from "@/components/admin/offer-form";
 import { createPageMetadata } from "@/lib/site";
 import { getAdminOfferById } from "@/lib/admin/repository";
 
-type AdminOfertaDetailPageProps = {
+type AdminOfertaEditPageProps = {
   params: Promise<{ id: string }>;
 };
 
 export async function generateMetadata({
   params,
-}: AdminOfertaDetailPageProps): Promise<Metadata> {
+}: AdminOfertaEditPageProps): Promise<Metadata> {
   const { id } = await params;
   const offer = await getAdminOfferById(id);
 
   return createPageMetadata({
-    title: offer ? `Oferta ${offer.offerNumber}` : "Detaliu oferta",
-    description: "Vizualizare detaliata oferta comerciala.",
-    path: `/admin/oferte/${id}`,
+    title: offer ? `Editeaza oferta ${offer.offerNumber}` : "Editeaza oferta",
+    description: "Formular intern pentru editare oferta comerciala.",
+    path: `/admin/oferte/${id}/editeaza`,
   });
 }
 
-export default async function AdminOfertaDetailPage({
-  params,
-}: AdminOfertaDetailPageProps) {
+export default async function AdminOfertaEditPage({ params }: AdminOfertaEditPageProps) {
   const { id } = await params;
   const offer = await getAdminOfferById(id);
 
@@ -38,24 +35,19 @@ export default async function AdminOfertaDetailPage({
   return (
     <div className="space-y-6">
       <Link
-        href="/admin/oferte"
+        href={`/admin/oferte/${id}`}
         className="inline-flex items-center gap-1 text-sm text-wood-700 transition-colors hover:text-wood-950"
       >
         <ChevronLeft size={16} />
-        Inapoi la oferte
+        Inapoi la detaliu oferta
       </Link>
 
       <AdminSectionHeading
-        title="Detaliu oferta"
-        description="Vizualizare completa a valorii comerciale, termenelor si statusului ofertei."
-        actions={
-          <ButtonLink href={`/admin/oferte/${offer.id}/editeaza`} size="sm" variant="secondary">
-            Editeaza oferta
-          </ButtonLink>
-        }
+        title="Editeaza oferta"
+        description="Modifica datele comerciale, termenii si statusul ofertei."
       />
 
-      <OfferDetailView offer={offer} />
+      <OfferForm mode="edit" initialData={offer} />
     </div>
   );
 }

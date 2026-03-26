@@ -121,6 +121,12 @@ export function OffersManagement({ initialOffers }: OffersManagementProps) {
             >
               Vezi detalii
             </Link>
+            <Link
+              href={`/admin/oferte/${item.id}/editeaza`}
+              className="rounded-full border border-sand-300 px-3 py-1 text-xs font-medium text-wood-700 transition-colors hover:bg-sand-100"
+            >
+              Editeaza
+            </Link>
             <button
               type="button"
               onClick={() => updateStatus(item.id, "trimisa")}

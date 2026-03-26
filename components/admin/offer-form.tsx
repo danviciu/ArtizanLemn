@@ -132,9 +132,13 @@ export function OfferForm({ initialData, mode = "create" }: OfferFormProps) {
       internalNotes: String(formData.get("internalNotes") ?? ""),
     };
 
+    const endpoint =
+      mode === "create" ? "/api/admin/offers" : `/api/admin/offers/${initialData?.id}`;
+    const method = mode === "create" ? "POST" : "PATCH";
+
     try {
-      const response = await fetch("/api/admin/offers", {
-        method: "POST",
+      const response = await fetch(endpoint, {
+        method,
         headers: {
           "Content-Type": "application/json",
         },
@@ -182,8 +186,9 @@ export function OfferForm({ initialData, mode = "create" }: OfferFormProps) {
       <div className="space-y-1.5">
         <h2 className="text-4xl">{mode === "create" ? "Adauga oferta" : "Editeaza oferta"}</h2>
         <p className="text-sm text-wood-700">
-          Creeaza oferta comerciala pe baza cererii clientului. Daca lasi numarul ofertei gol, se
-          genereaza automat.
+          {mode === "create"
+            ? "Creeaza oferta comerciala pe baza cererii clientului. Daca lasi numarul ofertei gol, se genereaza automat."
+            : "Actualizeaza datele ofertei si salveaza modificarile direct in Supabase."}
         </p>
       </div>
 
@@ -414,7 +419,7 @@ export function OfferForm({ initialData, mode = "create" }: OfferFormProps) {
 
       <div className="flex flex-wrap gap-3">
         <Button type="submit" disabled={isSaving}>
-          {isSaving ? "Salvam..." : "Creeaza oferta"}
+          {isSaving ? "Salvam..." : mode === "create" ? "Creeaza oferta" : "Salveaza modificari"}
         </Button>
         <Button type="button" variant="secondary" onClick={() => router.push("/admin/oferte")}>
           Inapoi la lista
@@ -423,7 +428,9 @@ export function OfferForm({ initialData, mode = "create" }: OfferFormProps) {
 
       {isSuccess ? (
         <p className="rounded-xl border border-moss-400/40 bg-moss-400/15 px-4 py-3 text-sm text-wood-900">
-          Oferta a fost creata cu succes.
+          {mode === "create"
+            ? "Oferta a fost creata cu succes."
+            : "Modificarile ofertei au fost salvate cu succes."}
         </p>
       ) : null}
     </form>
