@@ -3,6 +3,10 @@ import { adminGalleryProjects } from "@/data/adminGallery";
 import { adminInquiries } from "@/data/adminInquiries";
 import { adminOrders } from "@/data/adminOrders";
 import {
+  getPersistedAdminOfferById,
+  listPersistedAdminOffers,
+} from "@/lib/admin/offers-repository";
+import {
   getPersistedAdminProductById,
   listPersistedAdminProducts,
 } from "@/lib/admin/products-repository";
@@ -17,6 +21,10 @@ export async function listAdminInquiries() {
 
 export async function listAdminOrders() {
   return [...adminOrders];
+}
+
+export async function listAdminOffers() {
+  return listPersistedAdminOffers();
 }
 
 export async function listAdminGalleryProjects() {
@@ -37,6 +45,10 @@ export async function getAdminInquiryById(id: string) {
 
 export async function getAdminOrderById(id: string) {
   return adminOrders.find((item) => item.id === id) ?? null;
+}
+
+export async function getAdminOfferById(id: string) {
+  return getPersistedAdminOfferById(id);
 }
 
 export async function getAdminGalleryById(id: string) {

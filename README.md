@@ -66,6 +66,7 @@ Ruleaza in Supabase SQL Editor:
 
 1. `docs/supabase-inquiries-setup.sql` pentru cereri + bucket atasamente
 2. `docs/supabase-products-admin-setup.sql` pentru CRUD produse in admin
+3. `docs/supabase-offers-setup.sql` pentru tabelele de ofertare (`offers`, `offer_items`, revizii, audit)
 
 ## Fluxuri active
 

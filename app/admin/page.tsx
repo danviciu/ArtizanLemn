@@ -7,6 +7,7 @@ import { createPageMetadata } from "@/lib/site";
 import {
   listAdminGalleryProjects,
   listAdminInquiries,
+  listAdminOffers,
   listAdminOrders,
   listAdminProducts,
 } from "@/lib/admin/repository";
@@ -20,14 +21,16 @@ export const metadata: Metadata = createPageMetadata({
 const quickLinks = [
   { label: "Gestionare produse", href: "/admin/produse" },
   { label: "Cereri clienti", href: "/admin/cereri" },
+  { label: "Oferte comerciale", href: "/admin/oferte" },
   { label: "Comenzi active", href: "/admin/comenzi" },
   { label: "Proiecte galerie", href: "/admin/galerie" },
   { label: "Articole blog", href: "/admin/blog" },
 ];
 
 export default async function AdminDashboardPage() {
-  const [inquiries, orders, products, gallery] = await Promise.all([
+  const [inquiries, offers, orders, products, gallery] = await Promise.all([
     listAdminInquiries(),
+    listAdminOffers(),
     listAdminOrders(),
     listAdminProducts(),
     listAdminGalleryProjects(),
@@ -38,6 +41,9 @@ export default async function AdminDashboardPage() {
     ["confirmata", "in_proiectare", "in_executie", "finisare", "pregatita_de_livrare"].includes(
       item.status,
     ),
+  ).length;
+  const activeOffersCount = offers.filter((item) =>
+    ["draft", "trimisa"].includes(item.status),
   ).length;
 
   const recentInquiries = [...inquiries]
@@ -54,8 +60,9 @@ export default async function AdminDashboardPage() {
         description="Centru intern pentru monitorizarea cererilor, comenzilor si continutului editorial."
       />
 
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
         <StatCard label="Cereri noi" value={newInquiriesCount} hint="Necesita analiza initiala" />
+        <StatCard label="Oferte active" value={activeOffersCount} hint="Draft sau trimise clientilor" />
         <StatCard label="Comenzi active" value={activeOrdersCount} hint="In lucru in atelier" />
         <StatCard label="Produse" value={products.length} hint="Elemente in portofoliu admin" />
         <StatCard label="Proiecte galerie" value={gallery.length} hint="Vizibile + draft" />

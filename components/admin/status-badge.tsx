@@ -2,6 +2,7 @@ import type {
   AdminBlogStatus,
   AdminGalleryStatus,
   AdminInquiryStatus,
+  AdminOfferStatus,
   AdminOrderStatus,
   AdminProductStatus,
 } from "@/types/admin";
@@ -10,6 +11,7 @@ import { cn } from "@/lib/utils";
 type StatusVariant =
   | "product"
   | "inquiry"
+  | "offer"
   | "order"
   | "gallery"
   | "blog";
@@ -17,6 +19,7 @@ type StatusVariant =
 type StatusValue =
   | AdminProductStatus
   | AdminInquiryStatus
+  | AdminOfferStatus
   | AdminOrderStatus
   | AdminGalleryStatus
   | AdminBlogStatus;
@@ -52,6 +55,14 @@ const inquiryStatusMeta: Record<AdminInquiryStatus, { label: string; style: keyo
   transformata_in_comanda: { label: "Transformata in comanda", style: "accent" },
 };
 
+const offerStatusMeta: Record<AdminOfferStatus, { label: string; style: keyof typeof styles }> = {
+  draft: { label: "Draft", style: "neutral" },
+  trimisa: { label: "Trimisa", style: "violet" },
+  acceptata: { label: "Acceptata", style: "green" },
+  respinsa: { label: "Respinsa", style: "red" },
+  expirata: { label: "Expirata", style: "amber" },
+};
+
 const orderStatusMeta: Record<AdminOrderStatus, { label: string; style: keyof typeof styles }> = {
   confirmata: { label: "Confirmata", style: "amber" },
   in_proiectare: { label: "In proiectare", style: "blue" },
@@ -78,6 +89,7 @@ const blogStatusMeta: Record<AdminBlogStatus, { label: string; style: keyof type
 function resolveMeta(variant: StatusVariant, value: StatusValue) {
   if (variant === "product") return productStatusMeta[value as AdminProductStatus];
   if (variant === "inquiry") return inquiryStatusMeta[value as AdminInquiryStatus];
+  if (variant === "offer") return offerStatusMeta[value as AdminOfferStatus];
   if (variant === "order") return orderStatusMeta[value as AdminOrderStatus];
   if (variant === "gallery") return galleryStatusMeta[value as AdminGalleryStatus];
   return blogStatusMeta[value as AdminBlogStatus];
@@ -101,5 +113,7 @@ export function StatusBadge({ variant, value }: StatusBadgeProps) {
 export const inquiryStatusOptions = Object.keys(
   inquiryStatusMeta,
 ) as AdminInquiryStatus[];
+
+export const offerStatusOptions = Object.keys(offerStatusMeta) as AdminOfferStatus[];
 
 export const orderStatusOptions = Object.keys(orderStatusMeta) as AdminOrderStatus[];

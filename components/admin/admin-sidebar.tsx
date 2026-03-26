@@ -18,6 +18,7 @@ const iconByHref: Record<string, React.ComponentType<{ size?: number }>> = {
   "/admin": LayoutDashboard,
   "/admin/produse": Package,
   "/admin/cereri": ClipboardList,
+  "/admin/oferte": FileText,
   "/admin/comenzi": FolderKanban,
   "/admin/galerie": Images,
   "/admin/blog": FileText,

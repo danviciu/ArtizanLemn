@@ -18,6 +18,13 @@ export type AdminOrderStatus =
   | "livrata"
   | "finalizata";
 
+export type AdminOfferStatus =
+  | "draft"
+  | "trimisa"
+  | "acceptata"
+  | "respinsa"
+  | "expirata";
+
 export type AdminGalleryStatus = "draft" | "publicat" | "arhivat";
 
 export type AdminBlogStatus = "draft" | "in_review" | "publicat" | "arhivat";
@@ -76,6 +83,30 @@ export type AdminOrder = {
   createdAt: string;
   updatedAt: string;
   notes?: string;
+};
+
+export type AdminOffer = {
+  id: string;
+  inquiryId?: string;
+  offerNumber: string;
+  version: number;
+  client: string;
+  clientPhone: string;
+  projectTitle: string;
+  categorySlug?: string;
+  currency: string;
+  subtotal: number;
+  discountValue: number;
+  tvaValue: number;
+  total: number;
+  validUntil: string;
+  estimatedExecutionDays?: number;
+  status: AdminOfferStatus;
+  createdAt: string;
+  updatedAt: string;
+  paymentTerms?: string;
+  warrantyMonths?: number;
+  internalNotes?: string;
 };
 
 export type AdminGalleryProject = {
