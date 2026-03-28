@@ -7,6 +7,12 @@ const currencyValues = ["RON", "EUR"] as const;
 
 const optionalTrimmedText = (max: number, message: string) =>
   z.string().trim().max(max, message).optional().or(z.literal(""));
+const optionalEmail = z
+  .string()
+  .trim()
+  .email("Emailul clientului nu este valid.")
+  .optional()
+  .or(z.literal(""));
 
 export const adminOfferPayloadSchema = z
   .object({
@@ -34,6 +40,7 @@ export const adminOfferPayloadSchema = z
       .trim()
       .min(8, "Telefonul clientului este obligatoriu.")
       .max(30, "Telefonul clientului este prea lung."),
+    clientEmail: optionalEmail,
     projectTitle: z
       .string()
       .trim()

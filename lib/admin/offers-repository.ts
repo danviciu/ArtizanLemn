@@ -13,6 +13,7 @@ type DbOfferRow = {
   version: number | null;
   client_name: string;
   client_phone: string | null;
+  client_email: string | null;
   project_title: string;
   category_slug: string | null;
   currency: string | null;
@@ -88,6 +89,7 @@ function mapDbRowToAdminOffer(row: DbOfferRow): AdminOffer {
     version: row.version ?? 1,
     client: row.client_name,
     clientPhone: row.client_phone ?? "",
+    clientEmail: row.client_email ?? undefined,
     projectTitle: row.project_title,
     categorySlug: row.category_slug ?? undefined,
     currency: row.currency ?? "RON",
@@ -119,7 +121,7 @@ export async function listPersistedAdminOffers() {
   const { data, error } = await supabase
     .from(OFFERS_TABLE)
     .select(
-      "id, inquiry_id, offer_number, version, client_name, client_phone, project_title, category_slug, currency, subtotal, discount_value, tva_value, total, valid_until, estimated_execution_days, status, payment_terms, warranty_months, internal_notes, created_at, updated_at",
+      "id, inquiry_id, offer_number, version, client_name, client_phone, client_email, project_title, category_slug, currency, subtotal, discount_value, tva_value, total, valid_until, estimated_execution_days, status, payment_terms, warranty_months, internal_notes, created_at, updated_at",
     )
     .order("updated_at", { ascending: false });
 
@@ -151,7 +153,7 @@ export async function getPersistedAdminOfferById(id: string) {
   const { data, error } = await supabase
     .from(OFFERS_TABLE)
     .select(
-      "id, inquiry_id, offer_number, version, client_name, client_phone, project_title, category_slug, currency, subtotal, discount_value, tva_value, total, valid_until, estimated_execution_days, status, payment_terms, warranty_months, internal_notes, created_at, updated_at",
+      "id, inquiry_id, offer_number, version, client_name, client_phone, client_email, project_title, category_slug, currency, subtotal, discount_value, tva_value, total, valid_until, estimated_execution_days, status, payment_terms, warranty_months, internal_notes, created_at, updated_at",
     )
     .eq("id", id)
     .maybeSingle();
@@ -197,6 +199,7 @@ export async function createPersistedAdminOffer(payload: AdminOfferPayload) {
       version: payload.version,
       client_name: payload.client,
       client_phone: payload.clientPhone,
+      client_email: payload.clientEmail || null,
       project_title: payload.projectTitle,
       category_slug: payload.categorySlug || null,
       currency: payload.currency,
@@ -219,7 +222,7 @@ export async function createPersistedAdminOffer(payload: AdminOfferPayload) {
       legal_clauses_snapshot: {},
     })
     .select(
-      "id, inquiry_id, offer_number, version, client_name, client_phone, project_title, category_slug, currency, subtotal, discount_value, tva_value, total, valid_until, estimated_execution_days, status, payment_terms, warranty_months, internal_notes, created_at, updated_at",
+      "id, inquiry_id, offer_number, version, client_name, client_phone, client_email, project_title, category_slug, currency, subtotal, discount_value, tva_value, total, valid_until, estimated_execution_days, status, payment_terms, warranty_months, internal_notes, created_at, updated_at",
     )
     .single();
 
@@ -261,6 +264,7 @@ export async function updatePersistedAdminOffer(
       version: payload.version,
       client_name: payload.client,
       client_phone: payload.clientPhone,
+      client_email: payload.clientEmail || null,
       project_title: payload.projectTitle,
       category_slug: payload.categorySlug || null,
       currency: payload.currency,
@@ -284,7 +288,7 @@ export async function updatePersistedAdminOffer(
     })
     .eq("id", id)
     .select(
-      "id, inquiry_id, offer_number, version, client_name, client_phone, project_title, category_slug, currency, subtotal, discount_value, tva_value, total, valid_until, estimated_execution_days, status, payment_terms, warranty_months, internal_notes, created_at, updated_at",
+      "id, inquiry_id, offer_number, version, client_name, client_phone, client_email, project_title, category_slug, currency, subtotal, discount_value, tva_value, total, valid_until, estimated_execution_days, status, payment_terms, warranty_months, internal_notes, created_at, updated_at",
     )
     .single();
 

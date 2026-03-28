@@ -118,6 +118,7 @@ export function OfferForm({ initialData, mode = "create" }: OfferFormProps) {
       version: parsedVersion,
       client: String(formData.get("client") ?? ""),
       clientPhone: String(formData.get("clientPhone") ?? ""),
+      clientEmail: String(formData.get("clientEmail") ?? ""),
       projectTitle: String(formData.get("projectTitle") ?? ""),
       categorySlug: String(formData.get("categorySlug") ?? ""),
       currency: String(formData.get("currency") ?? "RON") as AdminOfferPayload["currency"],
@@ -238,6 +239,17 @@ export function OfferForm({ initialData, mode = "create" }: OfferFormProps) {
             required
             className={inputClassName}
             placeholder="Ex: +40 7xx xxx xxx"
+          />
+        </label>
+
+        <label className="space-y-1.5">
+          <span className="text-sm font-medium text-wood-900">Email client</span>
+          <input
+            type="email"
+            defaultValue={initialData?.clientEmail ?? ""}
+            name="clientEmail"
+            className={inputClassName}
+            placeholder="Ex: client@exemplu.ro"
           />
         </label>
 

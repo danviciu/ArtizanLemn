@@ -87,6 +87,7 @@ export function OffersManagement({ initialOffers }: OffersManagementProps) {
         <div>
           <p className="font-medium text-wood-900">{item.client}</p>
           <p className="text-xs text-wood-700">{item.clientPhone}</p>
+          <p className="text-xs text-wood-700">{item.clientEmail || "Email necompletat"}</p>
           <p className="text-wood-700">{item.projectTitle}</p>
         </div>
       ),
@@ -127,6 +128,14 @@ export function OffersManagement({ initialOffers }: OffersManagementProps) {
             >
               Editeaza
             </Link>
+            <a
+              href={`/api/admin/offers/${item.id}/pdf`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-sand-300 px-3 py-1 text-xs font-medium text-wood-700 transition-colors hover:bg-sand-100"
+            >
+              PDF
+            </a>
             <button
               type="button"
               onClick={() => updateStatus(item.id, "trimisa")}

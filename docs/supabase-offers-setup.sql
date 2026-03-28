@@ -12,6 +12,7 @@ create table if not exists public.offers (
   version integer not null default 1,
   client_name text not null,
   client_phone text,
+  client_email text,
   project_title text not null,
   category_slug text,
   currency text not null default 'RON',
@@ -32,6 +33,9 @@ create table if not exists public.offers (
 
 alter table public.offers
   add column if not exists client_phone text;
+
+alter table public.offers
+  add column if not exists client_email text;
 
 create table if not exists public.offer_items (
   id uuid primary key default gen_random_uuid(),
@@ -120,3 +124,17 @@ alter table public.offers enable row level security;
 alter table public.offer_items enable row level security;
 alter table public.offer_revisions enable row level security;
 alter table public.offer_activity_log enable row level security;
+
+-- Bucket privat pentru PDF-urile de oferta.
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values (
+  'offer-pdfs',
+  'offer-pdfs',
+  false,
+  10485760,
+  array['application/pdf']
+)
+on conflict (id) do update
+set public = excluded.public,
+    file_size_limit = excluded.file_size_limit,
+    allowed_mime_types = excluded.allowed_mime_types;

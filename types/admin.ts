@@ -92,6 +92,7 @@ export type AdminOffer = {
   version: number;
   client: string;
   clientPhone: string;
+  clientEmail?: string;
   projectTitle: string;
   categorySlug?: string;
   currency: string;
