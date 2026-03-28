@@ -6,6 +6,7 @@ import { sendOfferToClient } from "@/lib/email/sendOfferToClient";
 import { generateOfferPdf } from "@/lib/offers/pdf";
 import { uploadOfferPdfAndCreateSignedUrl } from "@/lib/offers/pdf-storage";
 import { createWhatsAppLinkToPhone } from "@/lib/site-config";
+import { sendOfferPdfToWhatsApp } from "@/lib/whatsapp/sendOfferPdfToWhatsApp";
 
 export const runtime = "nodejs";
 
@@ -115,6 +116,35 @@ export async function POST(
       `PDF oferta: ${uploadedPdf.signedUrl}`,
       "Daca esti de acord, revenim cu contractul si pasii pentru avans.",
     ].join("\n");
+    const whatsappCaption = [
+      `Oferta ${offer.offerNumber}`,
+      `${offer.projectTitle}`,
+      `Total: ${new Intl.NumberFormat("ro-RO", { style: "currency", currency: offer.currency, maximumFractionDigits: 2 }).format(offer.total)}`,
+      "Artizan Lemn",
+    ].join(" | ");
+
+    const directWhatsAppSend = await sendOfferPdfToWhatsApp({
+      destinationPhone: offer.clientPhone,
+      fileName,
+      signedPdfUrl: uploadedPdf.signedUrl,
+      caption: whatsappCaption,
+    });
+
+    if (directWhatsAppSend.sent) {
+      return NextResponse.json({
+        success: true,
+        channel: "whatsapp",
+        deliveryMode: "api",
+        message:
+          "Oferta a fost trimisa direct pe WhatsApp, cu PDF atasat.",
+        whatsappMessageId: directWhatsAppSend.messageId,
+        pdf: {
+          path: uploadedPdf.path,
+          downloadUrl: uploadedPdf.signedUrl,
+          expiresInSeconds: uploadedPdf.signedUrlExpiresInSeconds,
+        },
+      });
+    }
 
     const whatsappUrl = createWhatsAppLinkToPhone(offer.clientPhone, whatsappMessage);
 
@@ -132,7 +162,11 @@ export async function POST(
     return NextResponse.json({
       success: true,
       channel: "whatsapp",
-      message: "Mesajul WhatsApp este pregatit cu link PDF securizat.",
+      deliveryMode: "link",
+      message:
+        directWhatsAppSend.reason === "api_error"
+          ? `Trimiterea directa pe WhatsApp a esuat (${directWhatsAppSend.errorMessage || "eroare API"}). Am pregatit fallback cu link PDF.`
+          : "Mesajul WhatsApp este pregatit cu link PDF securizat.",
       whatsappUrl,
       pdf: {
         path: uploadedPdf.path,

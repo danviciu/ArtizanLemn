@@ -53,3 +53,13 @@ export function getProductImagesBucketName() {
   const configuredBucket = process.env.PRODUCT_IMAGES_BUCKET?.trim();
   return configuredBucket || DEFAULT_PRODUCT_IMAGES_BUCKET;
 }
+
+export function getOptionalWhatsAppAccessToken() {
+  const value = process.env.WHATSAPP_ACCESS_TOKEN?.trim();
+  return value || null;
+}
+
+export function getOptionalWhatsAppPhoneNumberId() {
+  const value = process.env.WHATSAPP_PHONE_NUMBER_ID?.trim();
+  return value || null;
+}

@@ -56,6 +56,8 @@ Copiaza `.env.local.example` in `.env.local` si completeaza valorile:
 - `RESEND_API_KEY`
 - `NOTIFICATION_EMAIL_FROM` (ex: `Artizan Lemn <noreply@artizanlemn.ro>`, domeniu verificat in Resend)
 - `NOTIFICATION_EMAIL` (una sau mai multe adrese separate prin virgula)
+- `WHATSAPP_ACCESS_TOKEN` (optional, pentru trimitere directa PDF in WhatsApp Business API)
+- `WHATSAPP_PHONE_NUMBER_ID` (optional, ID numar WhatsApp Business Cloud)
 - `ADMIN_USERNAME`
 - `ADMIN_PASSWORD`
 - `ADMIN_AUTH_SECRET`

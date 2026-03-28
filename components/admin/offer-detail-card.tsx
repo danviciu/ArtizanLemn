@@ -15,6 +15,7 @@ type OfferShareResponse = {
   message?: string;
   recipientEmail?: string;
   whatsappUrl?: string;
+  deliveryMode?: "api" | "link";
   pdf?: {
     downloadUrl?: string;
   };
@@ -112,9 +113,7 @@ export function OfferDetailCard({ offer, onStatusChange }: OfferDetailCardProps)
         window.open(result.whatsappUrl, "_blank", "noopener,noreferrer");
       }
 
-      setShareMessage(
-        result.message || "Mesajul WhatsApp este pregatit cu link PDF securizat.",
-      );
+      setShareMessage(result.message || "Oferta a fost trimisa pe WhatsApp.");
     } catch (error) {
       setShareError(
         error instanceof Error

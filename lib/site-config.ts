@@ -15,7 +15,7 @@ export function createWhatsAppLink(
   return `https://wa.me/${cleanNumber}?text=${encodeURIComponent(message.trim())}`;
 }
 
-function normalizeWhatsAppNumber(phone: string) {
+export function normalizeWhatsAppNumber(phone: string) {
   const digits = phone.replace(/\D/g, "");
 
   if (!digits) {
