@@ -36,7 +36,10 @@ export function BrandLogo({
         fill
         sizes="96px"
         quality={100}
-        className={cn("object-contain object-center p-1", imageClassName)}
+        className={cn(
+          "object-cover object-center scale-[1.55]",
+          imageClassName,
+        )}
         priority={priority}
       />
     </span>
