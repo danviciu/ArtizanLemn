@@ -87,10 +87,6 @@ export const defaultMetadata: Metadata = {
         sizes: "16x16",
         type: "image/png",
       },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
     ],
     shortcut: [
       {
@@ -100,7 +96,7 @@ export const defaultMetadata: Metadata = {
     ],
     apple: [
       {
-        url: "/images/logo/artizan-lemn-logo.png",
+        url: "/apple-touch-icon.png",
         sizes: "180x180",
         type: "image/png",
       },
