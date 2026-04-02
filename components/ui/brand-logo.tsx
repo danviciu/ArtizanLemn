@@ -31,13 +31,13 @@ export function BrandLogo({
       )}
     >
       <Image
-        src="/images/logo/artizan-lemn-logo.png"
+        src="/images/logo/artizan-lemn-mark.png"
         alt="Artizan Lemn logo"
         fill
         sizes="96px"
         quality={100}
         className={cn(
-          "object-cover object-center scale-[1.55]",
+          "object-contain object-center p-[2px] brightness-110 contrast-125",
           imageClassName,
         )}
         priority={priority}
