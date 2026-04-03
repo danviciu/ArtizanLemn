@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Script from "next/script";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import {
   COOKIE_CONSENT_COOKIE_NAME,
   COOKIE_CONSENT_STORAGE_KEY,
@@ -115,6 +115,8 @@ export function CookieConsentBanner({
   const analyticsConfiguredRef = useRef(false);
   const loadAnalytics = decision === "accepted";
   const showBanner = decision === null || isSettingsOpen;
+  const rejectHref = "/api/consent?decision=rejected";
+  const acceptHref = "/api/consent?decision=accepted";
 
   useEffect(() => {
     ensureGtagStub();
@@ -223,23 +225,34 @@ export function CookieConsentBanner({
             .
           </p>
           <div className="mt-4 flex flex-wrap justify-end gap-2">
-            <Button
-              type="button"
-              variant="secondary"
-              size="sm"
+            <a
+              href={rejectHref}
               onPointerUp={() => applyDecision("rejected")}
-              onClick={() => applyDecision("rejected")}
+              onClick={(event) => {
+                event.preventDefault();
+                applyDecision("rejected");
+              }}
+              className={cn(
+                "inline-flex h-10 items-center justify-center rounded-full border px-5 text-sm font-medium tracking-wide transition-all duration-300 hover:-translate-y-0.5",
+                "border-sand-300 bg-white text-wood-950 hover:border-sand-400 hover:bg-sand-100",
+              )}
             >
               Refuza analitice
-            </Button>
-            <Button
-              type="button"
-              size="sm"
+            </a>
+            <a
+              href={acceptHref}
               onPointerUp={() => applyDecision("accepted")}
-              onClick={() => applyDecision("accepted")}
+              onClick={(event) => {
+                event.preventDefault();
+                applyDecision("accepted");
+              }}
+              className={cn(
+                "inline-flex h-10 items-center justify-center rounded-full border px-5 text-sm font-medium tracking-wide transition-all duration-300 hover:-translate-y-0.5",
+                "border-wood-900 bg-wood-900 text-sand-50 hover:border-wood-800 hover:bg-wood-800",
+              )}
             >
               Accepta analitice
-            </Button>
+            </a>
           </div>
         </aside>
       ) : null}
