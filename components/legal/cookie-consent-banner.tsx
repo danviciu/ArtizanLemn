@@ -119,6 +119,15 @@ export function CookieConsentBanner({
   const acceptHref = "/api/cc?d=accepted";
 
   useEffect(() => {
+    if (!decision) {
+      document.documentElement.removeAttribute("data-cookie-consent");
+      return;
+    }
+
+    document.documentElement.setAttribute("data-cookie-consent", decision);
+  }, [decision]);
+
+  useEffect(() => {
     const timer = window.setTimeout(() => {
       const storedDecision = readStoredDecision();
       if (!storedDecision) {
@@ -213,7 +222,7 @@ export function CookieConsentBanner({
       ) : null}
 
       {showBanner ? (
-        <aside className="fixed inset-x-4 bottom-4 z-[120] mx-auto w-full max-w-3xl rounded-2xl border border-sand-300/80 bg-white/96 p-5 shadow-[0_24px_40px_-30px_rgba(46,31,22,0.9)] backdrop-blur">
+        <aside className="cookie-consent-banner fixed inset-x-4 bottom-4 z-[120] mx-auto w-full max-w-3xl rounded-2xl border border-sand-300/80 bg-white/96 p-5 shadow-[0_24px_40px_-30px_rgba(46,31,22,0.9)] backdrop-blur">
           <h2 className="text-2xl">Setari cookies</h2>
           <p className="mt-3 text-sm text-wood-700">
             Folosim cookie-uri strict necesare pentru functionarea site-ului si

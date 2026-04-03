@@ -35,6 +35,11 @@
 }
 
 @layer base {
+  html[data-cookie-consent="accepted"] .cookie-consent-banner,
+  html[data-cookie-consent="rejected"] .cookie-consent-banner {
+    display: none !important;
+  }
+
   body {
     background:
       radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.5), transparent 45%),
