@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const siteConfig = {
   name: "Artizan Lemn",
   domain: "ArtizanLemn.ro",
-  url: "https://artizanlemn.ro",
+  url: "https://www.artizanlemn.ro",
   locale: "ro_RO",
   description:
     "Mobilier premium din lemn masiv realizat la comanda. Artizan Lemn transforma ideile tale in piese unicat, cu accent pe rafinament, proportii si executie impecabila.",
