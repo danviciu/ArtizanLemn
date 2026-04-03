@@ -10,6 +10,7 @@ import {
   GOOGLE_TAG_ID,
   OPEN_COOKIE_SETTINGS_EVENT,
   type CookieConsentDecision,
+  isCookieConsentDecision,
 } from "@/lib/cookie-consent";
 
 declare global {
@@ -45,12 +46,42 @@ function persistDecision(decision: CookieConsentDecision) {
 }
 
 type CookieConsentBannerProps = {
-  initialDecision: CookieConsentDecision | null;
+  initialDecision?: CookieConsentDecision | null;
 };
 
-export function CookieConsentBanner({ initialDecision }: CookieConsentBannerProps) {
-  const [decision, setDecision] = useState<CookieConsentDecision | null>(
-    initialDecision,
+function readStoredDecision(): CookieConsentDecision | null {
+  const localValue = window.localStorage.getItem(COOKIE_CONSENT_STORAGE_KEY);
+  if (isCookieConsentDecision(localValue)) {
+    return localValue;
+  }
+
+  const cookieValue = document.cookie
+    .split("; ")
+    .find((entry) => entry.startsWith(`${COOKIE_CONSENT_COOKIE_NAME}=`))
+    ?.split("=")[1] ?? null;
+
+  return isCookieConsentDecision(cookieValue) ? cookieValue : null;
+}
+
+function getInitialDecision(
+  initialDecision: CookieConsentDecision | null,
+): CookieConsentDecision | null {
+  if (initialDecision) {
+    return initialDecision;
+  }
+
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  return readStoredDecision();
+}
+
+export function CookieConsentBanner({
+  initialDecision = null,
+}: CookieConsentBannerProps) {
+  const [decision, setDecision] = useState<CookieConsentDecision | null>(() =>
+    getInitialDecision(initialDecision),
   );
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const analyticsConfiguredRef = useRef(false);

@@ -7,9 +7,11 @@ type CategoryCardProps = {
 };
 
 export function CategoryCard({ category }: CategoryCardProps) {
+  const categoryHref = `/categorii/${category.slug}`;
+
   return (
     <article className="group luxury-card h-full overflow-hidden">
-      <Link href={`/produse?categorie=${category.slug}`} className="block">
+      <Link href={categoryHref} className="block">
         <div className="relative aspect-[4/3] overflow-hidden">
           <Image
             src={category.image}
@@ -31,7 +33,7 @@ export function CategoryCard({ category }: CategoryCardProps) {
         </div>
         <p className="text-sm text-wood-700">{category.description}</p>
         <Link
-          href={`/produse?categorie=${category.slug}`}
+          href={categoryHref}
           className="inline-flex text-sm font-semibold text-wood-900 transition-colors hover:text-moss-600"
         >
           Vezi produse

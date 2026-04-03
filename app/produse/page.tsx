@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
+import { JsonLd } from "@/components/seo/json-ld";
 import { EmptyState } from "@/components/ui/empty-state";
 import { PageIntro } from "@/components/ui/page-intro";
 import { PrimaryButtonLink } from "@/components/ui/primary-button";
@@ -8,6 +10,10 @@ import { SectionWrapper } from "@/components/ui/section-wrapper";
 import { categories } from "@/data/categories";
 import { products as localProducts } from "@/data/products";
 import { listCatalogProducts } from "@/lib/catalog/products-repository";
+import {
+  createBreadcrumbJsonLd,
+  createCategoryItemListJsonLd,
+} from "@/lib/seo";
 import { createPageMetadata } from "@/lib/site";
 
 type ProdusePageProps = {
@@ -16,7 +22,7 @@ type ProdusePageProps = {
   }>;
 };
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export const metadata: Metadata = createPageMetadata({
   title: "Produse si piese realizate in atelier",
@@ -27,21 +33,33 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default async function ProdusePage({ searchParams }: ProdusePageProps) {
-  const products = await listCatalogProducts();
   const params = await searchParams;
-  const requestedCategory = params.categorie;
+  const requestedCategory = params.categorie?.trim();
   const hasValidCategory = categories.some(
     (category) => category.slug === requestedCategory,
   );
-  const activeCategory = hasValidCategory ? requestedCategory! : "toate";
 
-  const filteredProducts =
-    activeCategory === "toate"
-      ? products
-      : products.filter((product) => product.category === activeCategory);
+  if (requestedCategory && hasValidCategory) {
+    redirect(`/categorii/${requestedCategory}`);
+  }
+
+  const products = await listCatalogProducts();
+  const breadcrumbJsonLd = createBreadcrumbJsonLd([
+    { name: "Acasa", path: "/" },
+    { name: "Produse", path: "/produse" },
+  ]);
+  const collectionJsonLd = createCategoryItemListJsonLd({
+    name: "Produse si piese realizate in atelier",
+    description:
+      "Catalogul complet Artizan Lemn cu piese premium din lemn masiv, realizate la comanda.",
+    path: "/produse",
+    products,
+  });
 
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd data={collectionJsonLd} />
       <SectionWrapper
         className="border-b border-sand-300/70"
         containerClassName="space-y-8"
@@ -55,16 +73,16 @@ export default async function ProdusePage({ searchParams }: ProdusePageProps) {
           Catalog real din atelier: {products.length} piese organizate in{" "}
           {categories.length} categorii.
         </p>
-        <FilterBar categories={categories} activeCategory={activeCategory} />
+        <FilterBar categories={categories} activeCategory="toate" />
       </SectionWrapper>
 
       <SectionWrapper containerClassName="space-y-10">
-        {filteredProducts.length ? (
-          <ProductGrid products={filteredProducts} />
+        {products.length ? (
+          <ProductGrid products={products} />
         ) : (
           <EmptyState
-            title="Nu am gasit produse in aceasta categorie"
-            description="Selecteaza o alta categorie sau trimite-ne direct ideea ta pentru un proiect personalizat."
+            title="Nu exista produse publicate momentan"
+            description="Revino in curand sau trimite-ne direct ideea ta pentru un proiect personalizat."
             actionHref="/comanda-mobilier"
             actionLabel="Trimite cererea ta"
           />

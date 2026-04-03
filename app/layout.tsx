@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
-import { cookies } from "next/headers";
 import { CookieConsentBanner } from "@/components/legal/cookie-consent-banner";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { JsonLd } from "@/components/seo/json-ld";
 import { WhatsAppButton } from "@/components/ui/whatsapp-button";
-import {
-  COOKIE_CONSENT_COOKIE_NAME,
-  isCookieConsentDecision,
-} from "@/lib/cookie-consent";
+import { createOrganizationJsonLd, createWebsiteJsonLd } from "@/lib/seo";
 import { defaultMetadata } from "@/lib/site";
 import "./globals.css";
 
@@ -27,35 +24,19 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = defaultMetadata;
 
+const organizationJsonLd = createOrganizationJsonLd();
+const websiteJsonLd = createWebsiteJsonLd();
+
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies();
-  const rawConsentDecision =
-    cookieStore.get(COOKIE_CONSENT_COOKIE_NAME)?.value ?? null;
-  const initialConsentDecision = isCookieConsentDecision(rawConsentDecision)
-    ? rawConsentDecision
-    : null;
-
   return (
     <html lang="ro">
       <head>
-        {/* Google tag (gtag.js) */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18056926674"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-
-gtag('config', 'AW-18056926674');`,
-          }}
-        />
+        <JsonLd data={organizationJsonLd} />
+        <JsonLd data={websiteJsonLd} />
       </head>
       <body
         className={`${manrope.variable} ${cormorant.variable} bg-sand-50 text-wood-950 antialiased`}
@@ -64,7 +45,7 @@ gtag('config', 'AW-18056926674');`,
         <main>{children}</main>
         <SiteFooter />
         <WhatsAppButton />
-        <CookieConsentBanner initialDecision={initialConsentDecision} />
+        <CookieConsentBanner />
       </body>
     </html>
   );

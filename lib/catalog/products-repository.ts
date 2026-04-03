@@ -7,6 +7,7 @@ const PRODUCTS_TABLE = "catalog_products";
 
 type DbCatalogProductRow = {
   id: string;
+  updated_at: string;
   title: string;
   slug: string;
   category: string;
@@ -33,6 +34,7 @@ function hasSupabaseProductConfig() {
 function mapDbRowToCatalogProduct(row: DbCatalogProductRow): CatalogProduct {
   return {
     id: row.id,
+    updatedAt: row.updated_at,
     title: row.title,
     slug: row.slug,
     category: row.category,
@@ -57,7 +59,7 @@ async function readProductsFromSupabase() {
   const { data, error } = await supabase
     .from(PRODUCTS_TABLE)
     .select(
-      "id, title, slug, category, short_description, full_description, featured_image, gallery, tags, wood_types, finishes, suitable_for, is_featured, status",
+      "id, updated_at, title, slug, category, short_description, full_description, featured_image, gallery, tags, wood_types, finishes, suitable_for, is_featured, status",
     )
     .eq("status", "activ")
     .order("updated_at", { ascending: false });

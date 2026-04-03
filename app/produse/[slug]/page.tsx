@@ -7,11 +7,15 @@ import { ProductDetailsSection } from "@/components/products/product-details-sec
 import { ProductHero } from "@/components/products/product-hero";
 import { ProductMaterialsSection } from "@/components/products/product-materials-section";
 import { ProductGrid } from "@/components/products/product-grid";
+import { JsonLd } from "@/components/seo/json-ld";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
+import { categoryMap } from "@/data/categories";
 import {
   getCatalogProductBySlug,
   listCatalogProducts,
 } from "@/lib/catalog/products-repository";
+import { getProductSeoExamples } from "@/lib/product-seo";
+import { createBreadcrumbJsonLd, createProductJsonLd } from "@/lib/seo";
 import { createPageMetadata } from "@/lib/site";
 
 type ProductPageProps = {
@@ -20,7 +24,12 @@ type ProductPageProps = {
   }>;
 };
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const products = await listCatalogProducts();
+  return products.map((product) => ({ slug: product.slug }));
+}
 
 export async function generateMetadata({
   params,
@@ -59,12 +68,36 @@ export default async function ProductPage({ params }: ProductPageProps) {
         candidate.category === product.category && candidate.slug !== product.slug,
     )
     .slice(0, 3);
+  const category = categoryMap[product.category];
+  const breadcrumbJsonLd = createBreadcrumbJsonLd([
+    { name: "Acasa", path: "/" },
+    { name: "Categorii", path: "/categorii" },
+    {
+      name: category?.name ?? "Categorie",
+      path: `/categorii/${product.category}`,
+    },
+    { name: product.title, path: `/produse/${product.slug}` },
+  ]);
+  const productJsonLd = createProductJsonLd(product, category?.name);
+  const seoExamples = getProductSeoExamples(product);
 
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd data={productJsonLd} />
       <ProductHero product={product} />
       <ProductDetailsSection product={product} />
       <ProductMaterialsSection product={product} />
+
+      <SectionWrapper tone="muted" containerClassName="space-y-4">
+        <p className="product-eyebrow">Intentii de cautare</p>
+        <h2 className="product-title text-5xl">Exemple SEO pentru acest produs</h2>
+        <ol className="product-body list-decimal space-y-2 pl-5 text-sm md:text-base">
+          {seoExamples.map((example) => (
+            <li key={example}>{example}</li>
+          ))}
+        </ol>
+      </SectionWrapper>
 
       <SectionWrapper containerClassName="space-y-8">
         <div className="space-y-3">
@@ -109,7 +142,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <h2 className="product-title text-5xl">In aceeasi directie de proiect</h2>
             </div>
             <Link
-              href={`/produse?categorie=${product.category}`}
+              href={`/categorii/${product.category}`}
               className="text-sm font-semibold text-wood-900 transition-colors hover:text-moss-600"
             >
               Vezi toate piesele din categorie

@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import { CategoryGrid } from "@/components/categories/category-grid";
+import { JsonLd } from "@/components/seo/json-ld";
 import { PageIntro } from "@/components/ui/page-intro";
 import { SectionWrapper } from "@/components/ui/section-wrapper";
 import { categories } from "@/data/categories";
+import {
+  createBreadcrumbJsonLd,
+  createCategoryDirectoryJsonLd,
+} from "@/lib/seo";
 import { createPageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
@@ -14,8 +19,16 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default function CategoriiPage() {
+  const breadcrumbJsonLd = createBreadcrumbJsonLd([
+    { name: "Acasa", path: "/" },
+    { name: "Categorii", path: "/categorii" },
+  ]);
+  const categoryDirectoryJsonLd = createCategoryDirectoryJsonLd(categories);
+
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd data={categoryDirectoryJsonLd} />
       <SectionWrapper
         className="border-b border-sand-300/70"
         containerClassName="space-y-6"

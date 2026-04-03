@@ -16,7 +16,7 @@ export function FilterBar({ categories, activeCategory }: FilterBarProps) {
         {allFilters.map((item) => {
           const isActive = item.slug === activeCategory;
           const href =
-            item.slug === "toate" ? "/produse" : `/produse?categorie=${item.slug}`;
+            item.slug === "toate" ? "/produse" : `/categorii/${item.slug}`;
 
           return (
             <Link

@@ -21,6 +21,7 @@ export type CatalogProduct = {
   finishes: string[];
   suitableFor: string[];
   isFeatured: boolean;
+  updatedAt?: string;
 };
 
 export type CatalogGalleryItem = {

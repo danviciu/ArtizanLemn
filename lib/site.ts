@@ -7,9 +7,9 @@ export const siteConfig = {
   locale: "ro_RO",
   description:
     "Mobilier premium din lemn masiv realizat la comanda. Artizan Lemn transforma ideile tale in piese unicat, cu accent pe rafinament, proportii si executie impecabila.",
-  phone: "+40 745 000 000",
+  phone: "+40 755 573 522",
   email: "contact@artizanlemn.ro",
-  city: "Sibiu, Romania",
+  city: "Prejmer, Brasov, Romania",
 } as const;
 
 type PageMetadataInput = {
