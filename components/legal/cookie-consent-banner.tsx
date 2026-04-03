@@ -115,8 +115,8 @@ export function CookieConsentBanner({
   const analyticsConfiguredRef = useRef(false);
   const loadAnalytics = decision === "accepted";
   const showBanner = decision === null || isSettingsOpen;
-  const rejectHref = "/api/consent?decision=rejected";
-  const acceptHref = "/api/consent?decision=accepted";
+  const rejectHref = "/api/cc?d=rejected";
+  const acceptHref = "/api/cc?d=accepted";
 
   useEffect(() => {
     ensureGtagStub();
@@ -228,10 +228,7 @@ export function CookieConsentBanner({
             <a
               href={rejectHref}
               onPointerUp={() => applyDecision("rejected")}
-              onClick={(event) => {
-                event.preventDefault();
-                applyDecision("rejected");
-              }}
+              onClick={() => applyDecision("rejected")}
               className={cn(
                 "inline-flex h-10 items-center justify-center rounded-full border px-5 text-sm font-medium tracking-wide transition-all duration-300 hover:-translate-y-0.5",
                 "border-sand-300 bg-white text-wood-950 hover:border-sand-400 hover:bg-sand-100",
@@ -242,10 +239,7 @@ export function CookieConsentBanner({
             <a
               href={acceptHref}
               onPointerUp={() => applyDecision("accepted")}
-              onClick={(event) => {
-                event.preventDefault();
-                applyDecision("accepted");
-              }}
+              onClick={() => applyDecision("accepted")}
               className={cn(
                 "inline-flex h-10 items-center justify-center rounded-full border px-5 text-sm font-medium tracking-wide transition-all duration-300 hover:-translate-y-0.5",
                 "border-wood-900 bg-wood-900 text-sand-50 hover:border-wood-800 hover:bg-wood-800",
