@@ -162,13 +162,25 @@ export function CookieConsentBanner({
   }, [loadAnalytics]);
 
   const applyDecision = useCallback((nextDecision: CookieConsentDecision) => {
-    ensureGtagStub();
+    // UI first: even if analytics/storage fail, the banner must close immediately.
     setDecision(nextDecision);
     setIsSettingsOpen(false);
+
+    try {
+      ensureGtagStub();
+    } catch (error) {
+      console.error("Nu s-a putut initializa gtag.", error);
+    }
+
     persistDecision(nextDecision);
 
-    const analyticsStorage = nextDecision === "accepted" ? "granted" : "denied";
-    window.gtag?.("consent", "update", getConsentPayload(analyticsStorage));
+    try {
+      const analyticsStorage =
+        nextDecision === "accepted" ? "granted" : "denied";
+      window.gtag?.("consent", "update", getConsentPayload(analyticsStorage));
+    } catch (error) {
+      console.error("Nu s-a putut actualiza consimtamantul analytics.", error);
+    }
 
     if (nextDecision === "rejected") {
       analyticsConfiguredRef.current = false;
@@ -215,6 +227,7 @@ export function CookieConsentBanner({
               type="button"
               variant="secondary"
               size="sm"
+              onPointerUp={() => applyDecision("rejected")}
               onClick={() => applyDecision("rejected")}
             >
               Refuza analitice
@@ -222,6 +235,7 @@ export function CookieConsentBanner({
             <Button
               type="button"
               size="sm"
+              onPointerUp={() => applyDecision("accepted")}
               onClick={() => applyDecision("accepted")}
             >
               Accepta analitice
