@@ -119,6 +119,19 @@ export function CookieConsentBanner({
   const acceptHref = "/api/cc?d=accepted";
 
   useEffect(() => {
+    const timer = window.setTimeout(() => {
+      const storedDecision = readStoredDecision();
+      if (!storedDecision) {
+        return;
+      }
+
+      setDecision((currentDecision) => currentDecision ?? storedDecision);
+    }, 0);
+
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
     ensureGtagStub();
     window.gtag?.("consent", "default", {
       ...getConsentPayload("denied"),
