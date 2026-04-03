@@ -41,8 +41,32 @@ function ensureGtagStub() {
 }
 
 function persistDecision(decision: CookieConsentDecision) {
-  window.localStorage.setItem(COOKIE_CONSENT_STORAGE_KEY, decision);
-  document.cookie = `${COOKIE_CONSENT_COOKIE_NAME}=${decision}; Path=/; Max-Age=${CONSENT_COOKIE_MAX_AGE_SECONDS}; SameSite=Lax`;
+  try {
+    window.localStorage.setItem(COOKIE_CONSENT_STORAGE_KEY, decision);
+  } catch (error) {
+    console.error("Nu s-a putut salva consimtamantul in localStorage.", error);
+  }
+
+  try {
+    const cookieParts = [
+      `${COOKIE_CONSENT_COOKIE_NAME}=${decision}`,
+      "Path=/",
+      `Max-Age=${CONSENT_COOKIE_MAX_AGE_SECONDS}`,
+      "SameSite=Lax",
+    ];
+
+    if (window.location.protocol === "https:") {
+      cookieParts.push("Secure");
+    }
+
+    if (window.location.hostname.endsWith("artizanlemn.ro")) {
+      cookieParts.push("Domain=.artizanlemn.ro");
+    }
+
+    document.cookie = cookieParts.join("; ");
+  } catch (error) {
+    console.error("Nu s-a putut salva consimtamantul in cookie.", error);
+  }
 }
 
 type CookieConsentBannerProps = {
@@ -50,9 +74,13 @@ type CookieConsentBannerProps = {
 };
 
 function readStoredDecision(): CookieConsentDecision | null {
-  const localValue = window.localStorage.getItem(COOKIE_CONSENT_STORAGE_KEY);
-  if (isCookieConsentDecision(localValue)) {
-    return localValue;
+  try {
+    const localValue = window.localStorage.getItem(COOKIE_CONSENT_STORAGE_KEY);
+    if (isCookieConsentDecision(localValue)) {
+      return localValue;
+    }
+  } catch (error) {
+    console.error("Nu s-a putut citi consimtamantul din localStorage.", error);
   }
 
   const cookieValue = document.cookie
@@ -135,9 +163,9 @@ export function CookieConsentBanner({
 
   const applyDecision = useCallback((nextDecision: CookieConsentDecision) => {
     ensureGtagStub();
-    persistDecision(nextDecision);
     setDecision(nextDecision);
     setIsSettingsOpen(false);
+    persistDecision(nextDecision);
 
     const analyticsStorage = nextDecision === "accepted" ? "granted" : "denied";
     window.gtag?.("consent", "update", getConsentPayload(analyticsStorage));
