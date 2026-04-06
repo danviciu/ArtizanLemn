@@ -5,6 +5,7 @@ import Script from "next/script";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import {
+  GOOGLE_ADS_TAG_ID,
   COOKIE_CONSENT_COOKIE_NAME,
   COOKIE_CONSENT_STORAGE_KEY,
   GOOGLE_TAG_ID,
@@ -182,6 +183,7 @@ export function CookieConsentBanner({
     window.gtag?.("config", GOOGLE_TAG_ID, {
       anonymize_ip: true,
     });
+    window.gtag?.("config", GOOGLE_ADS_TAG_ID);
     analyticsConfiguredRef.current = true;
   }, [loadAnalytics]);
 
