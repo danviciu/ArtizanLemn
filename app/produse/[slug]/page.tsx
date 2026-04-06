@@ -14,7 +14,6 @@ import {
   getCatalogProductBySlug,
   listCatalogProducts,
 } from "@/lib/catalog/products-repository";
-import { getProductSeoExamples } from "@/lib/product-seo";
 import { createBreadcrumbJsonLd, createProductJsonLd } from "@/lib/seo";
 import { createPageMetadata } from "@/lib/site";
 
@@ -79,7 +78,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
     { name: product.title, path: `/produse/${product.slug}` },
   ]);
   const productJsonLd = createProductJsonLd(product, category?.name);
-  const seoExamples = getProductSeoExamples(product);
 
   return (
     <>
@@ -88,16 +86,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <ProductHero product={product} />
       <ProductDetailsSection product={product} />
       <ProductMaterialsSection product={product} />
-
-      <SectionWrapper tone="muted" containerClassName="space-y-4">
-        <p className="product-eyebrow">Intentii de cautare</p>
-        <h2 className="product-title text-5xl">Exemple SEO pentru acest produs</h2>
-        <ol className="product-body list-decimal space-y-2 pl-5 text-sm md:text-base">
-          {seoExamples.map((example) => (
-            <li key={example}>{example}</li>
-          ))}
-        </ol>
-      </SectionWrapper>
 
       <SectionWrapper containerClassName="space-y-8">
         <div className="space-y-3">
