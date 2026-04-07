@@ -114,7 +114,6 @@ export function CookieConsentBanner({
   );
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const analyticsConfiguredRef = useRef(false);
-  const loadAnalytics = decision === "accepted";
   const showBanner = decision === null || isSettingsOpen;
   const rejectHref = "/api/cc?d=rejected";
   const acceptHref = "/api/cc?d=accepted";
@@ -142,11 +141,21 @@ export function CookieConsentBanner({
   }, []);
 
   useEffect(() => {
+    if (analyticsConfiguredRef.current) {
+      return;
+    }
+
     ensureGtagStub();
     window.gtag?.("consent", "default", {
       ...getConsentPayload("denied"),
       wait_for_update: 500,
     });
+    window.gtag?.("js", new Date());
+    window.gtag?.("config", GOOGLE_TAG_ID, {
+      anonymize_ip: true,
+    });
+    window.gtag?.("config", GOOGLE_ADS_TAG_ID);
+    analyticsConfiguredRef.current = true;
   }, []);
 
   useEffect(() => {
@@ -173,20 +182,6 @@ export function CookieConsentBanner({
     };
   }, []);
 
-  useEffect(() => {
-    if (!loadAnalytics || analyticsConfiguredRef.current) {
-      return;
-    }
-
-    ensureGtagStub();
-    window.gtag?.("js", new Date());
-    window.gtag?.("config", GOOGLE_TAG_ID, {
-      anonymize_ip: true,
-    });
-    window.gtag?.("config", GOOGLE_ADS_TAG_ID);
-    analyticsConfiguredRef.current = true;
-  }, [loadAnalytics]);
-
   const applyDecision = useCallback((nextDecision: CookieConsentDecision) => {
     // UI first: even if analytics/storage fail, the banner must close immediately.
     setDecision(nextDecision);
@@ -208,20 +203,15 @@ export function CookieConsentBanner({
       console.error("Nu s-a putut actualiza consimtamantul analytics.", error);
     }
 
-    if (nextDecision === "rejected") {
-      analyticsConfiguredRef.current = false;
-    }
   }, []);
 
   return (
     <>
-      {loadAnalytics ? (
-        <Script
-          id="ga4-script"
-          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_TAG_ID}`}
-          strategy="afterInteractive"
-        />
-      ) : null}
+      <Script
+        id="ga4-script"
+        src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_TAG_ID}`}
+        strategy="afterInteractive"
+      />
 
       {showBanner ? (
         <aside className="cookie-consent-banner fixed inset-x-4 bottom-4 z-[120] mx-auto w-full max-w-3xl rounded-2xl border border-sand-300/80 bg-white/96 p-5 shadow-[0_24px_40px_-30px_rgba(46,31,22,0.9)] backdrop-blur">
