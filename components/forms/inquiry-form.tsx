@@ -14,6 +14,8 @@ import {
   InquirySubmissionError,
   submitInquiry,
 } from "@/lib/actions/submitInquiry";
+import { getStoredMarketingAttribution } from "@/lib/client-marketing-attribution";
+import { trackClientEvent } from "@/lib/client-tracking";
 import {
   inquiryUploadConstraints,
   inquirySchema,
@@ -26,6 +28,7 @@ const defaultValues: InquirySchemaValues = {
   nume: "",
   telefon: "",
   email: "",
+  website: "",
   titluProiect: "",
   descriereDetaliata: "",
   dimensiuniAproximative: "",
@@ -100,9 +103,20 @@ export function InquiryForm() {
     }
 
     try {
+      const marketingAttribution = getStoredMarketingAttribution();
+
       await submitInquiry({
         ...values,
+        ...marketingAttribution,
         attachments,
+      });
+
+      trackClientEvent("lead_form_submit", {
+        form_name: "comanda_mobilier",
+        lead_channel: "website_form",
+        utm_source: marketingAttribution.utmSource,
+        utm_medium: marketingAttribution.utmMedium,
+        utm_campaign: marketingAttribution.utmCampaign,
       });
     } catch (error) {
       if (error instanceof InquirySubmissionError) {
@@ -156,6 +170,11 @@ export function InquiryForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="luxury-card space-y-8 p-6 md:p-9">
+      <div className="rounded-2xl border border-sand-300/80 bg-sand-100/70 px-4 py-3 text-sm text-wood-800">
+        Completeaza formularul in ritmul tau. Revenim de regula in 1-2 zile
+        lucratoare cu urmatorii pasi pentru proiect.
+      </div>
+
       {submissionError ? (
         <p className="rounded-2xl border border-red-200/90 bg-red-50/80 px-4 py-3 text-sm text-red-700">
           {submissionError}
@@ -201,6 +220,15 @@ export function InquiryForm() {
               {...register("email")}
             />
           </FormField>
+
+          <input
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            className="hidden"
+            aria-hidden="true"
+            {...register("website")}
+          />
 
           <FormField
             id="titluProiect"
@@ -277,7 +305,7 @@ export function InquiryForm() {
             <TextInput
               id="bugetOrientativ"
               type="text"
-              placeholder="Ex: 12.000 - 18.000 lei"
+              placeholder="Completeaza doar daca ai un buget stabilit"
               hasError={Boolean(errors.bugetOrientativ)}
               {...register("bugetOrientativ")}
             />

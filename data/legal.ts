@@ -2,7 +2,7 @@ export const legalProfile = {
   operatorName: "R & V DOCTOR BIKE SRL",
   registeredOffice: "Strada 1, Prejmer, Brasov, Romania",
   contactEmail: "contact@artizanlemn.ro",
-  contactPhone: "+40 755 573 522",
+  contactPhone: "0751414637",
   cui: "18391904",
   tradeRegisterNumber: "J08/367/2006",
   lastUpdated: "19 martie 2026",

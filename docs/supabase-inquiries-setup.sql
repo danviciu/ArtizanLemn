@@ -28,6 +28,20 @@ create index if not exists inquiries_status_idx
 
 alter table public.inquiries enable row level security;
 
+-- Rate limit persistent pentru endpointul /api/inquiries.
+create table if not exists public.inquiry_rate_limits (
+  bucket_key text primary key,
+  ip_hash text not null,
+  window_start timestamptz not null,
+  request_count integer not null default 0,
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists inquiry_rate_limits_window_start_idx
+  on public.inquiry_rate_limits (window_start desc);
+
+alter table public.inquiry_rate_limits enable row level security;
+
 -- Bucket public pentru fisierele de inspiratie.
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values (

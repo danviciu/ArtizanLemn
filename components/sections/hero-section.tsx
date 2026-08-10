@@ -32,21 +32,38 @@ export function HeroSection() {
           </p>
 
           <div className="flex flex-wrap gap-3">
-            <PrimaryButtonLink href="/comanda-mobilier" size="lg">
+            <PrimaryButtonLink
+              href="/comanda-mobilier"
+              size="lg"
+              data-track-event="cta_click"
+              data-track-label="Solicita oferta"
+              data-track-location="home_hero"
+            >
               Solicita oferta
             </PrimaryButtonLink>
             <SecondaryButtonLink
               href="/galerie"
               size="lg"
               className="border-sand-50/85 bg-sand-50/95"
+              data-track-event="cta_click"
+              data-track-label="Vezi lucrarile"
+              data-track-location="home_hero"
             >
               Vezi lucrarile
             </SecondaryButtonLink>
           </div>
 
-          <p className="text-xs font-medium text-sand-100/82">
-            Lemn masiv selectat. Executie in atelier propriu. Dialog direct.
-          </p>
+          <div className="grid gap-2 pt-2 text-sm text-sand-100/90 sm:grid-cols-3">
+            <p className="rounded-xl border border-sand-50/18 bg-wood-950/28 px-3 py-2">
+              Raspuns in 1-2 zile lucratoare
+            </p>
+            <p className="rounded-xl border border-sand-50/18 bg-wood-950/28 px-3 py-2">
+              Poti trimite schite, poze si inspiratii
+            </p>
+            <p className="rounded-xl border border-sand-50/18 bg-wood-950/28 px-3 py-2">
+              Executam pe dimensiunile spatiului tau
+            </p>
+          </div>
         </Reveal>
 
         <Reveal delay={0.12} className="hidden lg:block lg:justify-self-end">

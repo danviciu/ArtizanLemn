@@ -16,7 +16,7 @@ export function ProductCTA({ product }: ProductCTAProps) {
             Proiect personalizat
           </p>
           <h2 className="mt-3 text-4xl text-sand-50 md:text-5xl">
-            Solicita o piesa similara
+            Vrei un model similar?
           </h2>
           <p className="mt-4 max-w-3xl text-sm text-sand-100/90 md:text-base">
             Modelul {product.title} este un punct de pornire. Putem ajusta
@@ -25,19 +25,38 @@ export function ProductCTA({ product }: ProductCTAProps) {
           </p>
 
           <div className="mt-7 flex flex-wrap gap-3">
-            <PrimaryButtonLink href="/comanda-mobilier" size="lg">
-              Trimite ideea ta
+            <PrimaryButtonLink
+              href="/comanda-mobilier#formular-comanda"
+              size="lg"
+              data-track-event="cta_click"
+              data-track-label="Solicita oferta pentru acest stil"
+              data-track-location="product_cta"
+            >
+              Solicita oferta pentru acest stil
             </PrimaryButtonLink>
+            <SecondaryButtonLink
+              href="/comanda-mobilier#formular-comanda"
+              size="lg"
+              data-track-event="cta_click"
+              data-track-label="Trimite dimensiunile tale"
+              data-track-location="product_cta"
+            >
+              Trimite dimensiunile tale
+            </SecondaryButtonLink>
             <SecondaryButtonLink
               href="/contact"
               size="lg"
               className="border-sand-50/70 bg-transparent text-sand-50 hover:bg-sand-50/10"
+              data-track-event="cta_click"
+              data-track-label="Discuta proiectul cu noi"
+              data-track-location="product_cta"
             >
               Discuta proiectul cu noi
             </SecondaryButtonLink>
             <WhatsAppInlineLink
               label="Discuta pe WhatsApp"
               message={`Buna! Ma intereseaza o piesa similara cu ${product.title}. Putem discuta detaliile proiectului?`}
+              trackingLocation="product_cta"
               className="border-sand-50/45 bg-sand-50/10 text-sand-50 hover:bg-sand-50/20"
             />
           </div>

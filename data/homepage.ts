@@ -20,62 +20,74 @@ export const homeCategories: HomeCategoryItem[] = [
   {
     id: "paturi",
     title: "Paturi",
-    description: "Structuri solide, proportii echilibrate si finisaje premium.",
+    description:
+      "Paturi din lemn masiv, configurate pe dimensiunea camerei si stilul dormitorului tau.",
     image: categoryImage(
       "paturi",
       "/images/produse/pat-bogdan/imagine-01-ansamblu.webp",
     ),
     href: "/produse?categorie=paturi",
+    ctaLabel: "Vezi exemple",
   },
   {
     id: "mese",
     title: "Mese",
-    description: "Piese centrale pentru dining si living, construite sa reziste.",
+    description:
+      "Mese din lemn masiv pentru dining si lucru, adaptate pe dimensiuni reale de utilizare.",
     image: categoryImage(
       "mese",
       "/images/produse/masa-coman/imagine-01-ansamblu.webp",
     ),
     href: "/produse?categorie=mese",
+    ctaLabel: "Vezi exemple",
   },
   {
     id: "biblioteci",
     title: "Biblioteci",
-    description: "Compozitii personalizate pentru carti si obiecte.",
+    description:
+      "Biblioteci si rafturi din lemn masiv pentru depozitare clara si integrare eleganta in interior.",
     image: categoryImage(
       "biblioteci",
       "/images/produse/biblioteca-bucur/imagine-01-ansamblu.webp",
     ),
     href: "/produse?categorie=biblioteci",
+    ctaLabel: "Vezi exemple",
   },
   {
     id: "dulapuri-de-baie",
     title: "Dulapuri de baie",
-    description: "Depozitare eficienta cu integrare eleganta in amenajare.",
+    description:
+      "Dulapuri de baie din lemn tratat, realizate pentru umiditate si optimizare eficienta a spatiului.",
     image: categoryImage(
       "dulapuri-de-baie",
       "/images/produse/dulap-de-baie-comandau/imagine-01-ansamblu.webp",
     ),
     href: "/produse?categorie=dulapuri-de-baie",
+    ctaLabel: "Vezi exemple",
   },
   {
     id: "riflaje",
     title: "Riflaje",
-    description: "Detalii arhitecturale cu textura si ritm vizual rafinat.",
+    description:
+      "Riflaje din lemn pentru ritm arhitectural, delimitare vizuala si accent premium in spatiul tau.",
     image: categoryImage(
       "riflaje",
       "/images/produse/riflaj-panou/imagine-01-ansamblu.webp",
     ),
     href: "/produse?categorie=riflaje",
+    ctaLabel: "Vezi exemple",
   },
   {
     id: "piese-personalizate",
     title: "Piese personalizate",
-    description: "Solutii unicat pentru idei care nu intra in tipare standard.",
+    description:
+      "Proiecte complet personalizate pentru idei unicat, discutate direct cu atelierul nostru.",
     image: categoryImage(
       "piese-personalizate",
       "/images/produse/bar-rustic-din-lemn/imagine-01-ansamblu.webp",
     ),
     href: "/produse?categorie=piese-personalizate",
+    ctaLabel: "Solicita oferta",
   },
 ];
 
@@ -147,24 +159,22 @@ export const representativePieces: RepresentativePiece[] = [
 
 export const homeProcessSteps: HomeProcessStep[] = [
   {
-    id: "idee",
-    title: "Ne trimiti ideea",
-    description: "Descrii liber proiectul, cu schite, imagini sau exemple.",
+    id: "pas-1",
+    title: "Trimiti ideea sau schita",
+    description:
+      "Ne poti trimite fotografii, schite simple si exemple de inspiratie pentru proiect.",
   },
   {
-    id: "discutie",
-    title: "Discutam detaliile",
-    description: "Stabilim materialele, proportiile si directia de executie.",
+    id: "pas-2",
+    title: "Discutam materialele si dimensiunile",
+    description:
+      "Validam proportiile, esenta lemnului si finisajele potrivite pentru spatiul tau.",
   },
   {
-    id: "atelier",
-    title: "Realizam piesa in atelier",
-    description: "Executam fiecare element cu control riguros al finisajelor.",
-  },
-  {
-    id: "livrare",
-    title: "Livram produsul final",
-    description: "Montaj curat, ajustari finale si predare completa a lucrarii.",
+    id: "pas-3",
+    title: "Primesti solutia si oferta",
+    description:
+      "Iti propunem directia tehnica si oferta, apoi stabilim pasii urmatori de executie.",
   },
 ];
 

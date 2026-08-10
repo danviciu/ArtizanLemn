@@ -29,13 +29,22 @@ export function CTASection() {
             </p>
 
             <div className="flex flex-wrap gap-3">
-              <PrimaryButtonLink href="/comanda-mobilier" size="lg">
+              <PrimaryButtonLink
+                href="/comanda-mobilier"
+                size="lg"
+                data-track-event="cta_click"
+                data-track-label="Trimite cererea ta"
+                data-track-location="home_bottom_cta"
+              >
                 Trimite cererea ta
               </PrimaryButtonLink>
               <SecondaryButtonLink
                 href="/contact"
                 size="lg"
                 className="border-sand-50/70 bg-transparent text-sand-50 hover:bg-sand-50/10"
+                data-track-event="cta_click"
+                data-track-label="Contacteaza-ne"
+                data-track-location="home_bottom_cta"
               >
                 Contacteaza-ne
               </SecondaryButtonLink>

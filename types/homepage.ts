@@ -4,6 +4,7 @@ export type HomeCategoryItem = {
   description: string;
   image: string;
   href: string;
+  ctaLabel: "Vezi exemple" | "Solicita oferta";
 };
 
 export type RepresentativePiece = {

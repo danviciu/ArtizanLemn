@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import { cookies } from "next/headers";
+import { MarketingAttributionCapture } from "@/components/analytics/marketing-attribution-capture";
 import { CookieConsentBanner } from "@/components/legal/cookie-consent-banner";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
@@ -10,7 +11,11 @@ import {
   COOKIE_CONSENT_COOKIE_NAME,
   isCookieConsentDecision,
 } from "@/lib/cookie-consent";
-import { createOrganizationJsonLd, createWebsiteJsonLd } from "@/lib/seo";
+import {
+  createLocalBusinessJsonLd,
+  createOrganizationJsonLd,
+  createWebsiteJsonLd,
+} from "@/lib/seo";
 import { defaultMetadata } from "@/lib/site";
 import "./globals.css";
 
@@ -30,7 +35,52 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = defaultMetadata;
 
 const organizationJsonLd = createOrganizationJsonLd();
+const localBusinessJsonLd = createLocalBusinessJsonLd();
 const websiteJsonLd = createWebsiteJsonLd();
+const conversionTrackingBootstrapScript = `(() => {
+  if (window.__artizanTrackingBootstrapped) {
+    return;
+  }
+
+  window.__artizanTrackingBootstrapped = true;
+
+  const push = (eventName, payload = {}) => {
+    const eventPayload = { event: eventName, ...payload };
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(eventPayload);
+
+    if (typeof window.gtag === "function") {
+      window.gtag("event", eventName, payload);
+    }
+  };
+
+  window.ArtizanTrack = { push };
+
+  document.addEventListener(
+    "click",
+    (event) => {
+      const origin = event.target;
+      if (!(origin instanceof Element)) {
+        return;
+      }
+
+      const target = origin.closest("[data-track-event]");
+      if (!target) {
+        return;
+      }
+
+      const eventName = target.getAttribute("data-track-event") || "cta_click";
+      push(eventName, {
+        track_label: target.getAttribute("data-track-label") || undefined,
+        track_location: target.getAttribute("data-track-location") || undefined,
+        track_type: target.getAttribute("data-track-type") || undefined,
+        href: target.getAttribute("href") || undefined,
+      });
+    },
+    { passive: true },
+  );
+})();`;
 const cookieConsentBootstrapScript = `(() => {
   const COOKIE_NAME = "${COOKIE_CONSENT_COOKIE_NAME}";
   const STORAGE_KEY = "artizan_cookie_consent_v1";
@@ -75,14 +125,19 @@ export default async function RootLayout({
     <html lang="ro">
       <head>
         <script
+          dangerouslySetInnerHTML={{ __html: conversionTrackingBootstrapScript }}
+        />
+        <script
           dangerouslySetInnerHTML={{ __html: cookieConsentBootstrapScript }}
         />
         <JsonLd data={organizationJsonLd} />
+        <JsonLd data={localBusinessJsonLd} />
         <JsonLd data={websiteJsonLd} />
       </head>
       <body
         className={`${manrope.variable} ${cormorant.variable} bg-sand-50 text-wood-950 antialiased`}
       >
+        <MarketingAttributionCapture />
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />

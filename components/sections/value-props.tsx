@@ -11,7 +11,7 @@ export function ValueProps() {
     <SectionWrapper id="why-artizan-lemn" tone="muted" containerClassName="space-y-10">
       <Reveal>
         <SectionHeading
-          eyebrow="Why Artizan Lemn"
+          eyebrow="De ce Artizan Lemn"
           title="De ce clientii aleg atelierul nostru"
           description="Punem accent pe material, proces si dialog, astfel incat rezultatul final sa aiba valoare in timp."
         />

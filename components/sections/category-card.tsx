@@ -32,7 +32,7 @@ export function CategoryCard({ item }: CategoryCardProps) {
           href={item.href}
           className="inline-flex text-sm font-semibold text-wood-900 transition-colors hover:text-moss-600"
         >
-          Descopera
+          {item.ctaLabel}
         </Link>
       </div>
     </motion.article>

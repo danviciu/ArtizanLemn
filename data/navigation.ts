@@ -11,11 +11,13 @@ export const mainNavigation: NavItem[] = [
 ];
 
 export const companyDetails = {
-  phone: "40755573522",
-  phones: ["40755573522", "0766546274"] as const,
+  phone: "0751414637",
+  phones: ["0751414637"] as const,
   email: "contact@artizanlemn.ro",
-  city: "Strada 1, Prejmer, Brasov",
+  city: "Strada 1, Prejmer, Bra\u0219ov",
   schedule: "Luni - Vineri, 09:00 - 18:00",
+  phoneSchedule:
+    "Apeluri telefonice: Luni - Vineri, 09:00 - 18:00. Sambata - Duminica: inchis.",
 } as const;
 
 export type SocialLink = {

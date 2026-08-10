@@ -1,4 +1,4 @@
-import { createWhatsAppLink } from "@/lib/site-config";
+﻿import { createWhatsAppLink } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 import { WhatsAppIcon } from "@/components/ui/whatsapp-icon";
 
@@ -6,19 +6,25 @@ type WhatsAppInlineLinkProps = {
   label?: string;
   message?: string;
   className?: string;
+  trackingLocation?: string;
 };
 
 export function WhatsAppInlineLink({
   label = "Contact rapid pe WhatsApp",
   message,
   className,
+  trackingLocation,
 }: WhatsAppInlineLinkProps) {
   return (
     <a
       href={createWhatsAppLink(message)}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={`${label} (se deschide într-un tab nou)`}
+      aria-label={`${label} (se deschide intr-un tab nou)`}
+      data-track-event="contact_click"
+      data-track-label={label}
+      data-track-location={trackingLocation}
+      data-track-type="whatsapp"
       className={cn(
         "inline-flex items-center gap-2 rounded-full border border-[#1f7a59]/35",
         "bg-[#1f7a59]/10 px-4 py-2.5 text-sm font-medium text-[#164d39]",

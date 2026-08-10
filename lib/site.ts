@@ -7,9 +7,17 @@ export const siteConfig = {
   locale: "ro_RO",
   description:
     "Mobilier premium din lemn masiv realizat la comanda. Artizan Lemn transforma ideile tale in piese unicat, cu accent pe rafinament, proportii si executie impecabila.",
-  phone: "+40 755 573 522",
+  phone: "0751414637",
   email: "contact@artizanlemn.ro",
-  city: "Prejmer, Brasov, Romania",
+  city: "Strada 1, Prejmer, Bra\u0219ov",
+  address: {
+    streetAddress: "Strada 1",
+    addressLocality: "Prejmer",
+    addressRegion: "Bra\u0219ov",
+    addressCountry: "RO",
+  },
+  openingHours: "Mo-Fr 09:00-18:00",
+  googleBusinessProfileUrl: "https://maps.app.goo.gl/VCTUNxjfyy9WVqqNA",
 } as const;
 
 type PageMetadataInput = {
@@ -17,6 +25,7 @@ type PageMetadataInput = {
   description: string;
   path: string;
   image?: string;
+  keywords?: string[];
 };
 
 const defaultImage = "/images/hero/hero-main-table.png";
@@ -109,10 +118,12 @@ export function createPageMetadata({
   description,
   path,
   image = defaultImage,
+  keywords,
 }: PageMetadataInput): Metadata {
   return {
     title,
     description,
+    keywords,
     alternates: {
       canonical: path,
     },

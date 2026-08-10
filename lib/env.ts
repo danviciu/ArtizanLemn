@@ -3,6 +3,7 @@ import "server-only";
 const DEFAULT_NOTIFICATION_EMAILS = ["contact@artizanlemn.ro"];
 const DEFAULT_NOTIFICATION_EMAIL_FROM = "Artizan Lemn <onboarding@resend.dev>";
 const DEFAULT_PRODUCT_IMAGES_BUCKET = "catalog-images";
+const DEFAULT_RATE_LIMIT_IP_SALT = "artizan-lemn-inquiry-rate-limit";
 
 function getRequiredEnvVar(name: string) {
   const value = process.env[name];
@@ -62,4 +63,9 @@ export function getOptionalWhatsAppAccessToken() {
 export function getOptionalWhatsAppPhoneNumberId() {
   const value = process.env.WHATSAPP_PHONE_NUMBER_ID?.trim();
   return value || null;
+}
+
+export function getRateLimitIpSalt() {
+  const configuredSalt = process.env.RATE_LIMIT_IP_SALT?.trim();
+  return configuredSalt || DEFAULT_RATE_LIMIT_IP_SALT;
 }

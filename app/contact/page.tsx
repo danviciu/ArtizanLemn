@@ -1,90 +1,113 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/json-ld";
 import { ContactForm } from "@/components/forms/contact-form";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/ui/page-hero";
-import { WhatsAppInlineLink } from "@/components/ui/whatsapp-inline-link";
+import { QuickContactActions } from "@/components/ui/quick-contact-actions";
 import { companyDetails } from "@/data/navigation";
-import { createPageMetadata } from "@/lib/site";
+import { createBreadcrumbJsonLd } from "@/lib/seo";
+import { createPageMetadata, siteConfig } from "@/lib/site";
 import {
   createGoogleMapsEmbedLink,
-  createGoogleMapsLink,
   siteContactConfig,
 } from "@/lib/site-config";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Contact",
+  title: "Contact Artizan Lemn",
   description:
-    "Contacteaza Artizan Lemn pentru proiecte de mobilier premium din lemn masiv realizate la comanda.",
+    "Contacteaza Artizan Lemn pentru mobilier la comanda din lemn masiv. Telefon, email, adresa atelier si program.",
   path: "/contact",
   image: "/images/galerie/intrare-fereastra.png",
+  keywords: [
+    "contact artizan lemn",
+    "mobilier la comanda brasov",
+    "mobilier din lemn masiv",
+    "atelier lemn prejmer",
+    "oferta mobilier personalizat",
+  ],
 });
 
-const contactPoints = [
-  { label: "Telefon", value: companyDetails.phones },
-  { label: "Email", value: companyDetails.email },
-  { label: "Locatie atelier", value: companyDetails.city },
-  { label: "Program", value: companyDetails.schedule },
-];
-
 const mapsEmbedSrc = createGoogleMapsEmbedLink();
-const googleMapsHref = createGoogleMapsLink();
+const googleMapsHref = siteConfig.googleBusinessProfileUrl;
 const coordinateText = `${siteContactConfig.location.latitude}, ${siteContactConfig.location.longitude}`;
-const mapKicker = "Loca\u021bie";
-const mapTitle = "Ne g\u0103se\u0219ti aici";
-const openMapsLabel = "Deschide \u00een Google Maps";
+const breadcrumbJsonLd = createBreadcrumbJsonLd([
+  { name: "Acasa", path: "/" },
+  { name: "Contact", path: "/contact" },
+]);
+
+const contactRows = [
+  { label: "Telefon", value: companyDetails.phones[0], href: `tel:${companyDetails.phones[0]}` },
+  { label: "Email", value: companyDetails.email, href: `mailto:${companyDetails.email}` },
+  { label: "Adresa", value: companyDetails.city },
+  { label: "Program atelier", value: companyDetails.schedule },
+  { label: "Program apeluri", value: companyDetails.phoneSchedule },
+];
 
 const externalButtonClass =
   "inline-flex items-center justify-center gap-2 rounded-full border border-sand-300 bg-white px-5 py-2.5 text-sm font-medium tracking-wide text-wood-900 transition-all duration-300 hover:-translate-y-0.5 hover:bg-sand-100 hover:border-sand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wood-700 focus-visible:ring-offset-2";
+const phoneAvailabilityNote =
+  "(Sambata si Duminica nu preluam apeluri, lasati mesaj pe WhatsApp.)";
 
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd} />
+
       <PageHero
         eyebrow="Contact"
-        title="Discutam despre proiectul tau"
-        description="Trimite-ne detaliile initiale si revenim rapid cu urmatorii pasi pentru o oferta personalizata."
+        title="Date de contact si disponibilitate"
+        description="Suntem disponibili pentru proiecte de mobilier la comanda din lemn masiv si revenim rapid cu pasii potriviti pentru proiectul tau."
         image="/images/galerie/terasa-eleganta.png"
       />
 
       <section className="section-space pb-10 md:pb-14">
-        <Container className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+        <Container className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
           <aside className="space-y-5">
             <article className="luxury-card p-6">
               <h2 className="text-3xl">Date de contact</h2>
               <ul className="mt-4 space-y-3">
-                {contactPoints.map((point) => (
-                  <li key={point.label}>
+                {contactRows.map((row) => (
+                  <li key={row.label}>
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-wood-700">
-                      {point.label}
+                      {row.label}
                     </p>
-                    {Array.isArray(point.value) ? (
-                      <div className="mt-1 space-y-1">
-                        {point.value.map((phone) => (
-                          <a
-                            key={phone}
-                            href={`tel:${phone}`}
-                            className="block text-sm text-wood-900 transition-colors hover:text-moss-600"
-                          >
-                            {phone}
-                          </a>
-                        ))}
+                    {row.href ? (
+                      <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-wood-900">
+                        <a
+                          href={row.href}
+                          className="transition-colors hover:text-moss-600"
+                        >
+                          {row.value}
+                        </a>
+                        {row.label.startsWith("Telefon") ? (
+                          <span className="text-xs text-wood-700">
+                            {phoneAvailabilityNote}
+                          </span>
+                        ) : null}
                       </div>
                     ) : (
-                      <p className="text-sm text-wood-900">{point.value}</p>
+                      <p className="mt-1 text-sm text-wood-900">{row.value}</p>
                     )}
                   </li>
                 ))}
               </ul>
-              <div className="mt-5">
-                <WhatsAppInlineLink label="Contact rapid pe WhatsApp" />
-              </div>
+
+              <QuickContactActions
+                className="mt-5"
+                callLabel="Suna in program"
+                whatsappLabel="Scrie pe WhatsApp"
+                emailLabel="Trimite email"
+                whatsappMessage="Buna! As dori sa discutam un proiect de mobilier la comanda."
+                trackingLocation="contact_page"
+              />
             </article>
 
             <article className="luxury-card p-6">
-              <h2 className="text-3xl">Vizita in atelier</h2>
+              <h2 className="text-3xl">Disponibilitate</h2>
               <p className="mt-3 text-sm text-wood-700">
-                Pentru proiecte complexe recomandam o discutie in atelier, cu
-                mostre de materiale si exemple de finisaje.
+                Preluam proiecte de mobilier premium din lemn masiv: paturi,
+                mese, biblioteci, dulapuri de baie, riflaje si piese complet
+                personalizate, in functie de cerintele spatiului.
               </p>
             </article>
           </aside>
@@ -96,8 +119,8 @@ export default function ContactPage() {
       <section className="pb-16 md:pb-24">
         <Container className="space-y-6">
           <div className="space-y-2">
-            <p className="editorial-kicker">{mapKicker}</p>
-            <h2 className="text-5xl">{mapTitle}</h2>
+            <p className="editorial-kicker">Locatie atelier</p>
+            <h2 className="text-5xl">Ne gasesti aici</h2>
           </div>
 
           <article className="luxury-card overflow-hidden">
@@ -126,14 +149,22 @@ export default function ContactPage() {
                   rel="noopener noreferrer"
                   aria-label="Deschide locatia in Google Maps (se deschide intr-un tab nou)"
                   className={externalButtonClass}
+                  data-track-event="contact_click"
+                  data-track-label="Deschide in Google Maps"
+                  data-track-location="contact_page"
+                  data-track-type="maps"
                 >
-                  {openMapsLabel}
+                  Deschide in Google Maps
                 </a>
                 <a
                   href={`mailto:${companyDetails.email}`}
                   className={externalButtonClass}
+                  data-track-event="contact_click"
+                  data-track-label="Trimite email"
+                  data-track-location="contact_page"
+                  data-track-type="email"
                 >
-                  Scrie-ne pe email
+                  Trimite email
                 </a>
               </div>
             </div>

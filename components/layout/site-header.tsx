@@ -4,9 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { PrimaryButtonLink } from "@/components/ui/primary-button";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { Container } from "@/components/ui/container";
+import { PrimaryButtonLink } from "@/components/ui/primary-button";
 import { mainNavigation } from "@/data/navigation";
 import { cn } from "@/lib/utils";
 
@@ -76,21 +76,30 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <div className="hidden shrink-0 xl:block">
-          <PrimaryButtonLink href="/comanda-mobilier" size="sm" className="px-5">
+        <div className="hidden shrink-0 items-center gap-3 xl:flex">
+          <PrimaryButtonLink
+            href="/comanda-mobilier"
+            size="sm"
+            className="px-5"
+            data-track-event="cta_click"
+            data-track-label="Solicita oferta"
+            data-track-location="header_desktop"
+          >
             Solicita oferta
           </PrimaryButtonLink>
         </div>
 
-        <button
-          type="button"
-          aria-expanded={isOpen}
-          aria-label={isOpen ? "Inchide meniul" : "Deschide meniul"}
-          onClick={() => setIsOpen((value) => !value)}
-          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-sand-300 bg-white/92 text-wood-900 transition-colors hover:bg-sand-100 xl:hidden"
-        >
-          {isOpen ? <X size={18} /> : <Menu size={18} />}
-        </button>
+        <div className="flex items-center gap-2 xl:hidden">
+          <button
+            type="button"
+            aria-expanded={isOpen}
+            aria-label={isOpen ? "Inchide meniul" : "Deschide meniul"}
+            onClick={() => setIsOpen((value) => !value)}
+            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-sand-300 bg-white/92 text-wood-900 transition-colors hover:bg-sand-100"
+          >
+            {isOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </Container>
 
       {isOpen ? (
@@ -123,6 +132,9 @@ export function SiteHeader() {
               href="/comanda-mobilier"
               size="sm"
               className="mt-4 h-11 w-full justify-center"
+              data-track-event="cta_click"
+              data-track-label="Solicita oferta"
+              data-track-location="header_mobile"
             >
               Solicita oferta
             </PrimaryButtonLink>

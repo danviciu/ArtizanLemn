@@ -8,13 +8,13 @@ export function ProcessSteps() {
     <SectionWrapper id="proces" containerClassName="space-y-10">
       <Reveal>
         <SectionHeading
-          eyebrow="Proces"
-          title="De la idee la piesa finala"
-          description="Un traseu simplu si clar, construit pentru proiecte personalizate."
+          eyebrow="Cum incepi"
+          title="Trei pasi simpli pentru mobilier la comanda"
+          description="Proces clar pentru proiecte personalizate din lemn masiv, fara etape complicate."
         />
       </Reveal>
 
-      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-5 md:grid-cols-3">
         {homeProcessSteps.map((step, index) => (
           <Reveal key={step.id} delay={index * 0.08}>
             <article className="luxury-card h-full p-6">

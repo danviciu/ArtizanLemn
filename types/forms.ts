@@ -1,3 +1,5 @@
+import type { MarketingAttributionData } from "@/types/marketing";
+
 export type InquiryAttachment = {
   id: string;
   file: File;
@@ -7,10 +9,11 @@ export type InquiryAttachment = {
   previewUrl?: string;
 };
 
-export type InquiryFormData = {
+export type InquiryFormData = MarketingAttributionData & {
   nume: string;
   telefon: string;
   email: string;
+  website?: string;
   titluProiect: string;
   descriereDetaliata: string;
   dimensiuniAproximative?: string;

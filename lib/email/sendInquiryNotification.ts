@@ -5,6 +5,7 @@ import {
   getNotificationEmails,
   getResendApiKey,
 } from "@/lib/env";
+import type { MarketingAttributionData } from "@/types/marketing";
 
 export type InquiryNotificationAttachment = {
   name: string;
@@ -27,6 +28,7 @@ export type InquiryNotificationPayload = {
   budget?: string | null;
   deadlineNote?: string | null;
   additionalNotes?: string | null;
+  marketingAttribution?: MarketingAttributionData | null;
   attachments: InquiryNotificationAttachment[];
 };
 
@@ -56,11 +58,35 @@ function formatSubmissionDate(dateIso: string) {
   }).format(date);
 }
 
+function buildMarketingAttributionRows(attribution?: MarketingAttributionData | null) {
+  if (!attribution) {
+    return [];
+  }
+
+  return [
+    ["UTM Source", attribution.utmSource],
+    ["UTM Medium", attribution.utmMedium],
+    ["UTM Campaign", attribution.utmCampaign],
+    ["UTM Term", attribution.utmTerm],
+    ["UTM Content", attribution.utmContent],
+    ["GCLID", attribution.gclid],
+    ["WBRAID", attribution.wbraid],
+    ["GBRAID", attribution.gbraid],
+    ["FBCLID", attribution.fbclid],
+    ["MSCLKID", attribution.msclkid],
+    ["Pagina de intrare", attribution.attributionLandingPage],
+    ["Referrer", attribution.attributionReferrer],
+    ["Capturat la", attribution.attributionCapturedAt],
+    ["Ultima actualizare", attribution.attributionLastSeenAt],
+  ].filter((entry): entry is [string, string] => Boolean(entry[1] && entry[1].trim()));
+}
+
 export async function sendInquiryNotification(payload: InquiryNotificationPayload) {
   const resend = new Resend(getResendApiKey());
   const fromEmail = getNotificationEmailFrom();
   const toEmails = getNotificationEmails();
   const submittedAtLabel = formatSubmissionDate(payload.submissionDateIso);
+  const marketingRows = buildMarketingAttributionRows(payload.marketingAttribution);
 
   const attachmentTextBlock = payload.attachments.length
     ? payload.attachments
@@ -76,6 +102,19 @@ export async function sendInquiryNotification(payload: InquiryNotificationPayloa
         )
         .join("")}</ul>`
     : "<p>Fara atasamente.</p>";
+
+  const marketingTextBlock = marketingRows.length
+    ? marketingRows.map(([label, value]) => `${label}: ${value}`).join("\n")
+    : "N/A";
+
+  const marketingHtmlBlock = marketingRows.length
+    ? `<ul>${marketingRows
+        .map(
+          ([label, value]) =>
+            `<li><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value)}</li>`,
+        )
+        .join("")}</ul>`
+    : "<p>N/A</p>";
 
   const text = [
     "Noua cerere mobilier - Artizan Lemn",
@@ -96,6 +135,9 @@ export async function sendInquiryNotification(payload: InquiryNotificationPayloa
     `Buget: ${fallbackText(payload.budget)}`,
     `Termen: ${fallbackText(payload.deadlineNote)}`,
     `Observatii: ${fallbackText(payload.additionalNotes)}`,
+    "",
+    "Atribuire marketing:",
+    marketingTextBlock,
     "",
     "Atasamente:",
     attachmentTextBlock,
@@ -122,6 +164,9 @@ export async function sendInquiryNotification(payload: InquiryNotificationPayloa
       <p style="margin: 0 0 4px;"><strong>Buget:</strong> ${escapeHtml(fallbackText(payload.budget))}</p>
       <p style="margin: 0 0 4px;"><strong>Termen:</strong> ${escapeHtml(fallbackText(payload.deadlineNote))}</p>
       <p style="margin: 0 0 16px;"><strong>Observatii:</strong> ${escapeHtml(fallbackText(payload.additionalNotes))}</p>
+
+      <h3 style="margin: 0 0 8px;">Atribuire marketing</h3>
+      ${marketingHtmlBlock}
 
       <h3 style="margin: 0 0 8px;">Atasamente</h3>
       ${attachmentHtmlBlock}

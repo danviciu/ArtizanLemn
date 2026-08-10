@@ -25,11 +25,21 @@ type ProdusePageProps = {
 export const revalidate = 3600;
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Produse si piese realizate in atelier",
+  title: "Mobilier din lemn masiv realizat la comanda",
   description:
-    "Descopera selectia Artizan Lemn de piese premium din lemn masiv, create la comanda si adaptabile fiecarui proiect.",
+    "Descopera piese premium din lemn masiv realizate la comanda: paturi, mese, biblioteci, dulapuri de baie, riflaje si proiecte personalizate.",
   path: "/produse",
   image: localProducts[0]?.featuredImage,
+  keywords: [
+    "mobilier la comanda",
+    "mobilier premium din lemn masiv",
+    "paturi din lemn masiv",
+    "mese din lemn",
+    "biblioteci din lemn",
+    "dulapuri de baie din lemn",
+    "riflaje din lemn",
+    "proiecte personalizate",
+  ],
 });
 
 export default async function ProdusePage({ searchParams }: ProdusePageProps) {

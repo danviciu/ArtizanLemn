@@ -9,9 +9,9 @@ export function FeaturedCategoriesSection() {
     <SectionWrapper id="categorii" containerClassName="space-y-10">
       <Reveal>
         <SectionHeading
-          eyebrow="Categorii reprezentative"
-          title="Directii de proiect pentru spatii premium"
-          description="Fiecare categorie este tratata ca un proiect personalizat, nu ca un produs de serie."
+          eyebrow="Ce putem realiza"
+          title="Categorii de mobilier premium din lemn masiv"
+          description="Alege directia potrivita proiectului tau si vezi exemple reale din atelierul Artizan Lemn."
         />
       </Reveal>
 

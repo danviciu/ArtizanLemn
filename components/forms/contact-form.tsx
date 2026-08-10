@@ -2,6 +2,11 @@
 
 import { FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
+import {
+  appendMarketingAttributionToFormData,
+  getStoredMarketingAttribution,
+} from "@/lib/client-marketing-attribution";
+import { trackClientEvent } from "@/lib/client-tracking";
 
 const fieldClassName =
   "w-full rounded-2xl border border-sand-300 bg-white px-4 py-3 text-sm text-wood-900 outline-none transition-colors placeholder:text-wood-700/65 focus:border-wood-700";
@@ -24,6 +29,7 @@ export function ContactForm() {
     payload.append("nume", String(rawData.get("nume") ?? ""));
     payload.append("telefon", String(rawData.get("telefon") ?? ""));
     payload.append("email", String(rawData.get("email") ?? ""));
+    payload.append("website", String(rawData.get("website") ?? ""));
     payload.append("titluProiect", "Mesaj din pagina Contact");
     payload.append("descriereDetaliata", String(rawData.get("mesaj") ?? ""));
     payload.append("dimensiuniAproximative", "");
@@ -31,6 +37,8 @@ export function ContactForm() {
     payload.append("bugetOrientativ", "");
     payload.append("termenDorit", "");
     payload.append("observatiiSuplimentare", "");
+    const marketingAttribution = getStoredMarketingAttribution();
+    appendMarketingAttributionToFormData(payload, marketingAttribution);
 
     try {
       const response = await fetch("/api/inquiries", {
@@ -52,6 +60,13 @@ export function ContactForm() {
 
       form.reset();
       setIsSuccess(true);
+      trackClientEvent("lead_form_submit", {
+        form_name: "contact",
+        lead_channel: "website_form",
+        utm_source: marketingAttribution.utmSource,
+        utm_medium: marketingAttribution.utmMedium,
+        utm_campaign: marketingAttribution.utmCampaign,
+      });
     } catch {
       setSubmissionError(
         "Mesajul nu a putut fi trimis momentan. Te rugam sa incerci din nou.",
@@ -74,6 +89,15 @@ export function ContactForm() {
         <span className="text-sm font-medium text-wood-900">Email</span>
         <input className={fieldClassName} name="email" type="email" required />
       </label>
+
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        className="hidden"
+        aria-hidden="true"
+      />
 
       <label className="block space-y-2">
         <span className="text-sm font-medium text-wood-900">Telefon</span>

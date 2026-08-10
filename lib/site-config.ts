@@ -1,5 +1,5 @@
 export const siteContactConfig = {
-  whatsappNumber: "40755573522",
+  whatsappNumber: "40751414637",
   whatsappMessage:
     "Buna! As dori mai multe informatii despre mobilierul realizat la comanda.",
   location: {

@@ -1,10 +1,16 @@
 import type { CatalogCategory, CatalogProduct } from "@/types/catalog";
 import { getProductSeoKeywordPhrases } from "@/lib/product-seo";
 import { siteConfig } from "@/lib/site";
+import { siteContactConfig } from "@/lib/site-config";
 
 type BreadcrumbItem = {
   name: string;
   path: string;
+};
+
+type FaqEntry = {
+  question: string;
+  answer: string;
 };
 
 type ItemListInput = {
@@ -35,9 +41,40 @@ export function createOrganizationJsonLd() {
     telephone: siteConfig.phone,
     address: {
       "@type": "PostalAddress",
-      addressLocality: siteConfig.city,
-      addressCountry: "RO",
+      streetAddress: siteConfig.address.streetAddress,
+      addressLocality: siteConfig.address.addressLocality,
+      addressRegion: siteConfig.address.addressRegion,
+      addressCountry: siteConfig.address.addressCountry,
     },
+  };
+}
+
+export function createLocalBusinessJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": `${siteConfig.url}/#local-business`,
+    name: siteConfig.name,
+    url: siteConfig.url,
+    description: siteConfig.description,
+    image: toAbsoluteUrl("/images/hero/hero-main-table.png"),
+    telephone: siteConfig.phone,
+    email: siteConfig.email,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: siteConfig.address.streetAddress,
+      addressLocality: siteConfig.address.addressLocality,
+      addressRegion: siteConfig.address.addressRegion,
+      addressCountry: siteConfig.address.addressCountry,
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: siteContactConfig.location.latitude,
+      longitude: siteContactConfig.location.longitude,
+    },
+    openingHours: siteConfig.openingHours,
+    areaServed: "Romania",
+    sameAs: [siteConfig.googleBusinessProfileUrl],
   };
 }
 
@@ -65,6 +102,21 @@ export function createBreadcrumbJsonLd(items: BreadcrumbItem[]) {
       position: index + 1,
       name: item.name,
       item: toAbsoluteUrl(item.path),
+    })),
+  };
+}
+
+export function createFaqJsonLd(entries: FaqEntry[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: entries.map((entry) => ({
+      "@type": "Question",
+      name: entry.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: entry.answer,
+      },
     })),
   };
 }

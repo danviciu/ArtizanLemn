@@ -1,6 +1,7 @@
 import "server-only";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
+import fontkit from "@pdf-lib/fontkit";
 import {
   PDFDocument,
   StandardFonts,
@@ -47,6 +48,11 @@ type GeneratedOfferPdf = {
 type DrawContext = {
   page: PDFPage;
   y: number;
+};
+
+type EmbeddedPdfFonts = {
+  regularFont: PDFFont;
+  boldFont: PDFFont;
 };
 
 function sanitizeFileName(value: string) {
@@ -160,6 +166,41 @@ async function embedLogo(pdfDoc: PDFDocument) {
   }
 }
 
+async function embedPdfFonts(pdfDoc: PDFDocument): Promise<EmbeddedPdfFonts> {
+  try {
+    pdfDoc.registerFontkit(fontkit);
+
+    const regularPath = path.join(
+      process.cwd(),
+      "public",
+      "fonts",
+      "NotoSans-Regular.ttf",
+    );
+    const boldPath = path.join(
+      process.cwd(),
+      "public",
+      "fonts",
+      "NotoSans-Bold.ttf",
+    );
+
+    const [regularBytes, boldBytes] = await Promise.all([
+      readFile(regularPath),
+      readFile(boldPath),
+    ]);
+
+    const [regularFont, boldFont] = await Promise.all([
+      pdfDoc.embedFont(regularBytes, { subset: true }),
+      pdfDoc.embedFont(boldBytes, { subset: true }),
+    ]);
+
+    return { regularFont, boldFont };
+  } catch {
+    const regularFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
+    const boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+    return { regularFont, boldFont };
+  }
+}
+
 function drawFooter(
   page: PDFPage,
   regularFont: PDFFont,
@@ -217,8 +258,7 @@ function drawSectionTitle(
 
 export async function generateOfferPdf(offer: AdminOffer): Promise<GeneratedOfferPdf> {
   const pdfDoc = await PDFDocument.create();
-  const regularFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
-  const boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+  const { regularFont, boldFont } = await embedPdfFonts(pdfDoc);
   const logo = await embedLogo(pdfDoc);
 
   const createdAtLabel = formatDateTime(offer.createdAt);

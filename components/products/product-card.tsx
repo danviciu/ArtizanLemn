@@ -39,12 +39,26 @@ export function ProductCard({ product, category }: ProductCardProps) {
           ))}
         </div>
 
-        <Link
-          href={`/produse/${product.slug}`}
-          className="inline-flex text-sm font-semibold text-wood-900 transition-colors hover:text-moss-600"
-        >
-          Descopera
-        </Link>
+        <div className="flex flex-wrap gap-4">
+          <Link
+            href={`/produse/${product.slug}`}
+            className="inline-flex text-sm font-semibold text-wood-900 transition-colors hover:text-moss-600"
+            data-track-event="cta_click"
+            data-track-label="Vezi exemple"
+            data-track-location="product_card"
+          >
+            Vezi exemple
+          </Link>
+          <Link
+            href={`/comanda-mobilier#formular-comanda`}
+            className="inline-flex text-sm font-semibold text-wood-900/85 transition-colors hover:text-moss-600"
+            data-track-event="cta_click"
+            data-track-label="Solicita oferta"
+            data-track-location="product_card"
+          >
+            Solicita oferta
+          </Link>
+        </div>
       </div>
     </article>
   );

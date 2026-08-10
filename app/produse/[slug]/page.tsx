@@ -45,10 +45,16 @@ export async function generateMetadata({
   }
 
   return createPageMetadata({
-    title: product.title,
-    description: product.shortDescription,
+    title: `${product.title} din lemn masiv la comanda`,
+    description: `${product.shortDescription} Solicita oferta pentru un model similar, adaptat pe dimensiunile spatiului tau.`,
     path: `/produse/${product.slug}`,
     image: product.featuredImage,
+    keywords: [
+      "mobilier la comanda",
+      "mobilier premium din lemn masiv",
+      `${product.title.toLowerCase()} din lemn masiv`,
+      `${product.title.toLowerCase()} la comanda`,
+    ],
   });
 }
 

@@ -11,11 +11,21 @@ import {
 import { createPageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Categorii",
+  title: "Categorii mobilier din lemn masiv",
   description:
-    "Exploreaza categoriile Artizan Lemn pentru mobilier premium din lemn masiv, realizat la comanda.",
+    "Exploreaza categorii de mobilier la comanda: paturi, mese, biblioteci, dulapuri de baie, riflaje si piese personalizate din lemn masiv.",
   path: "/categorii",
   image: categories[0]?.image,
+  keywords: [
+    "mobilier la comanda",
+    "mobilier din lemn masiv",
+    "paturi din lemn masiv",
+    "mese din lemn",
+    "biblioteci din lemn",
+    "dulapuri de baie din lemn",
+    "riflaje din lemn",
+    "piese personalizate",
+  ],
 });
 
 export default function CategoriiPage() {

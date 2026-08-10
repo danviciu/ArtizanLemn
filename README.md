@@ -58,6 +58,7 @@ Copiaza `.env.local.example` in `.env.local` si completeaza valorile:
 - `NOTIFICATION_EMAIL` (una sau mai multe adrese separate prin virgula)
 - `WHATSAPP_ACCESS_TOKEN` (optional, pentru trimitere directa PDF in WhatsApp Business API)
 - `WHATSAPP_PHONE_NUMBER_ID` (optional, ID numar WhatsApp Business Cloud)
+- `RATE_LIMIT_IP_SALT` (optional, recomandat in productie pentru hash-ul IP folosit la rate limiting)
 - `ADMIN_USERNAME`
 - `ADMIN_PASSWORD`
 - `ADMIN_AUTH_SECRET`
@@ -66,7 +67,7 @@ Copiaza `.env.local.example` in `.env.local` si completeaza valorile:
 
 Ruleaza in Supabase SQL Editor:
 
-1. `docs/supabase-inquiries-setup.sql` pentru cereri + bucket atasamente
+1. `docs/supabase-inquiries-setup.sql` pentru cereri + bucket atasamente + rate limit persistent
 2. `docs/supabase-products-admin-setup.sql` pentru CRUD produse in admin
 3. `docs/supabase-offers-setup.sql` pentru tabelele de ofertare (`offers`, `offer_items`, revizii, audit)
 
@@ -85,6 +86,10 @@ Ruleaza in Supabase SQL Editor:
   - editare produs existent (persistenta reala)
   - upload imagini direct din formular in Supabase Storage (bucket public)
   - fallback local daca Supabase nu este configurat
+
+## Analytics
+
+- `docs/ga4-conversion-events.md` contine mapping-ul evenimentelor GA4 recomandate pentru conversii Google Ads.
 
 ## Nota de securitate
 

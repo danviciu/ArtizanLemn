@@ -1,4 +1,5 @@
 import type { InquiryAttachment, InquiryFormData } from "@/types/forms";
+import { marketingAttributionFormFields } from "@/types/marketing";
 
 export type InquirySubmissionPayload = Omit<InquiryFormData, "attachments"> & {
   attachments: InquiryAttachment[];
@@ -43,6 +44,7 @@ export async function submitInquiry(
   appendTextField(formData, "nume", payload.nume);
   appendTextField(formData, "telefon", payload.telefon);
   appendTextField(formData, "email", payload.email);
+  appendTextField(formData, "website", payload.website);
   appendTextField(formData, "titluProiect", payload.titluProiect);
   appendTextField(formData, "descriereDetaliata", payload.descriereDetaliata);
   appendTextField(
@@ -58,6 +60,9 @@ export async function submitInquiry(
     "observatiiSuplimentare",
     payload.observatiiSuplimentare,
   );
+  marketingAttributionFormFields.forEach((field) => {
+    appendTextField(formData, field, payload[field]);
+  });
 
   payload.attachments.forEach((attachment) => {
     formData.append("attachments", attachment.file);

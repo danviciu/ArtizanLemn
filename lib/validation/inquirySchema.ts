@@ -34,6 +34,7 @@ export const inquirySchema = z.object({
     .string()
     .trim()
     .email("Te rugam sa completezi o adresa de email valida."),
+  website: optionalText(200, "Campul website este invalid."),
   titluProiect: z
     .string()
     .trim()
@@ -55,6 +56,20 @@ export const inquirySchema = z.object({
     1500,
     "Observatiile suplimentare sunt prea lungi.",
   ),
+  utmSource: optionalText(100, "UTM source este invalid."),
+  utmMedium: optionalText(100, "UTM medium este invalid."),
+  utmCampaign: optionalText(160, "UTM campaign este invalid."),
+  utmTerm: optionalText(160, "UTM term este invalid."),
+  utmContent: optionalText(160, "UTM content este invalid."),
+  gclid: optionalText(200, "GCLID este invalid."),
+  wbraid: optionalText(200, "WBRAID este invalid."),
+  gbraid: optionalText(200, "GBRAID este invalid."),
+  fbclid: optionalText(200, "FBCLID este invalid."),
+  msclkid: optionalText(200, "MSCLKID este invalid."),
+  attributionLandingPage: optionalText(1000, "Pagina de intrare este invalida."),
+  attributionReferrer: optionalText(1000, "Referrer-ul este invalid."),
+  attributionCapturedAt: optionalText(120, "Data capturii este invalida."),
+  attributionLastSeenAt: optionalText(120, "Data ultimei vizite este invalida."),
 });
 
 export type InquirySchemaValues = z.infer<typeof inquirySchema>;

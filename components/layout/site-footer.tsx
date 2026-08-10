@@ -6,12 +6,24 @@ import { BrandLogo } from "@/components/ui/brand-logo";
 import { disputeResolutionLinks } from "@/data/legal";
 import { companyDetails, mainNavigation, socialLinks } from "@/data/navigation";
 
+const phoneAvailabilityNote =
+  "(Sambata si Duminica nu preluam apeluri, lasati mesaj pe WhatsApp.)";
+
+const popularCategories = [
+  { label: "Paturi", href: "/categorii/paturi" },
+  { label: "Mese", href: "/categorii/mese" },
+  { label: "Biblioteci", href: "/categorii/biblioteci" },
+  { label: "Dulapuri de baie", href: "/categorii/dulapuri-de-baie" },
+  { label: "Riflaje", href: "/categorii/riflaje" },
+  { label: "Piese personalizate", href: "/categorii/piese-personalizate" },
+];
+
 export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="mt-16 border-t border-sand-300/70 bg-sand-100/55">
-      <Container className="grid gap-10 py-14 md:grid-cols-[1.15fr_0.85fr_0.75fr]">
+      <Container className="grid gap-10 py-14 md:grid-cols-2 xl:grid-cols-[1.1fr_0.85fr_0.8fr_1fr]">
         <div className="space-y-4">
           <Link href="/" className="inline-flex items-center gap-4">
             <BrandLogo size="lg" className="h-16 w-16 sm:h-20 sm:w-20" />
@@ -32,20 +44,23 @@ export function SiteFooter() {
           </p>
         </div>
 
-        <div className="space-y-4">
-          <p className="editorial-kicker">Link-uri rapide</p>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-            {mainNavigation.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-sm text-wood-700 transition-colors hover:text-wood-950"
-              >
-                {item.label}
-              </Link>
-            ))}
+        <div className="space-y-5">
+          <div className="space-y-3">
+            <p className="editorial-kicker">Navigare</p>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+              {mainNavigation.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm text-wood-700 transition-colors hover:text-wood-950"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
           </div>
-          <div className="space-y-2 pt-2">
+
+          <div className="space-y-2">
             <p className="editorial-kicker">Legal</p>
             <div className="flex flex-col gap-2">
               <Link
@@ -70,23 +85,46 @@ export function SiteFooter() {
           </div>
         </div>
 
+        <div className="space-y-3">
+          <p className="editorial-kicker">Categorii populare</p>
+          <div className="flex flex-col gap-2">
+            {popularCategories.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-sm text-wood-700 transition-colors hover:text-wood-950"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+
         <div className="space-y-5">
           <div className="space-y-2">
             <p className="editorial-kicker">Contact</p>
             <ul className="space-y-1.5 text-sm text-wood-700">
-              {companyDetails.phones.map((phone) => (
-                <li key={phone}>
-                  <a
-                    href={`tel:${phone}`}
-                    className="transition-colors hover:text-moss-600"
-                  >
-                    {phone}
-                  </a>
-                </li>
-              ))}
-              <li>{companyDetails.email}</li>
+              <li>
+                Telefon: {" "}
+                <a
+                  href={`tel:${companyDetails.phones[0]}`}
+                  className="transition-colors hover:text-moss-600"
+                >
+                  {companyDetails.phones[0]}
+                </a>
+                <span className="ml-1 text-xs text-wood-700">{phoneAvailabilityNote}</span>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${companyDetails.email}`}
+                  className="transition-colors hover:text-moss-600"
+                >
+                  {companyDetails.email}
+                </a>
+              </li>
               <li>{companyDetails.city}</li>
               <li>{companyDetails.schedule}</li>
+              <li>{companyDetails.phoneSchedule}</li>
             </ul>
           </div>
 

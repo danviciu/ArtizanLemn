@@ -1,5 +1,7 @@
 import { categoryMap } from "@/data/categories";
+import { ProductPricingPanel } from "@/components/products/product-pricing-panel";
 import { ProductImageGallery } from "@/components/products/product-image-gallery";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import type { CatalogProduct } from "@/types/catalog";
 
 type ProductHeroProps = {
@@ -8,6 +10,15 @@ type ProductHeroProps = {
 
 export function ProductHero({ product }: ProductHeroProps) {
   const category = categoryMap[product.category];
+  const breadcrumbItems = [
+    { label: "Acasa", href: "/" },
+    { label: "Categorii", href: "/categorii" },
+    {
+      label: category?.name ?? "Categorie",
+      href: `/categorii/${product.category}`,
+    },
+    { label: product.title },
+  ];
 
   return (
     <section className="relative isolate overflow-hidden border-b border-sand-300/70 bg-gradient-to-r from-sand-100/65 via-sand-50 to-sand-50 py-16 md:py-20">
@@ -19,6 +30,7 @@ export function ProductHero({ product }: ProductHeroProps) {
         />
 
         <div className="space-y-5">
+          <Breadcrumbs items={breadcrumbItems} />
           <p className="product-eyebrow">{category?.name ?? "Piesa personalizata"}</p>
           <h1 className="product-title text-5xl md:text-6xl">{product.title}</h1>
           <p className="product-body text-base md:text-lg">{product.shortDescription}</p>
@@ -33,6 +45,8 @@ export function ProductHero({ product }: ProductHeroProps) {
               </span>
             ))}
           </div>
+
+          <ProductPricingPanel product={product} />
         </div>
       </div>
     </section>
