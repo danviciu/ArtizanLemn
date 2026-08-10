@@ -12,9 +12,9 @@ import { createBreadcrumbJsonLd } from "@/lib/seo";
 import { createPageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Paturi din lemn masiv la comanda",
+  title: "Comanda pat din lemn masiv pe dimensiuni",
   description:
-    "Paturi din lemn masiv realizate la comanda, adaptate pe dimensiunile dormitorului si stilul proiectului tau.",
+    "Configureaza un pat din lemn masiv pe dimensiunile dormitorului tau si primeste o oferta personalizata de la atelierul Artizan Lemn.",
   path: "/paturi-din-lemn-masiv",
   image: "/images/produse/pat-bogdan/imagine-01-ansamblu.webp",
   keywords: [

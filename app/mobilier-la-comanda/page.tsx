@@ -13,13 +13,13 @@ import { createBreadcrumbJsonLd } from "@/lib/seo";
 import { createPageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Mobilier la comanda din lemn masiv",
+  title: "Comanda mobilier din lemn masiv pe proiect",
   description:
-    "Mobilier premium din lemn masiv realizat la comanda, cu proiecte personalizate pentru casa sau business.",
+    "Solicita o oferta pentru mobilier din lemn masiv realizat pe proiect: raspuns rapid, configurare pe dimensiuni reale si finisaje premium.",
   path: "/mobilier-la-comanda",
   image: "/images/hero/hero-main-table.png",
   keywords: [
-    "mobilier la comanda",
+    "comanda mobilier lemn masiv",
     "mobilier din lemn masiv",
     "mobilier premium",
     "proiecte personalizate",

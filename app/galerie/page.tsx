@@ -7,7 +7,7 @@ import { galleryItems } from "@/data/gallery";
 import { createPageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Galerie de lucrari",
+  title: "Galerie de proiecte cu mobilier din lemn masiv",
   description:
     "Selectie de proiecte Artizan Lemn care ilustreaza modul in care lucram lemnul masiv, cu atentie la proportie, textura si finisaj.",
   path: "/galerie",

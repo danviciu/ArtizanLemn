@@ -29,6 +29,17 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+dev.log
+dev.*.log
+start.*.log
+tmp-*.log
+tmp-*.txt
+tmp-*.png
+tmp-*.html
+api_*.json
+lighthouse-*.json
+test-upload.pdf
+start-process-test.txt
 
 # env files (can opt-in for committing if needed)
 .env*

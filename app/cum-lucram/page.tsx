@@ -6,9 +6,9 @@ import { PageHero } from "@/components/ui/page-hero";
 import { createPageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Cum lucrăm",
+  title: "Cum lucrăm: procesul pentru mobilier la comandă",
   description:
-    "Procesul Artizan Lemn: de la brief și concept până la execuție, livrare și montaj pentru mobilier premium la comandă.",
+    "Procesul Artizan Lemn: de la brief și concept până la execuție, livrare și montaj pentru mobilier premium din lemn masiv la comandă.",
   path: "/cum-lucram",
   image: "/images/hero/hero-workshop-bar.png",
 });

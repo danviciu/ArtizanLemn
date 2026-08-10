@@ -12,9 +12,9 @@ import { createBreadcrumbJsonLd } from "@/lib/seo";
 import { createPageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Mese din lemn la comanda",
+  title: "Comanda masa din lemn masiv pe dimensiuni",
   description:
-    "Mese din lemn masiv realizate la comanda pentru dining sau lucru, adaptate pe dimensiunile spatiului tau.",
+    "Configureaza o masa din lemn masiv pentru dining sau birou, pe dimensiunile spatiului tau, si primeste o oferta de la atelierul Artizan Lemn.",
   path: "/mese-din-lemn",
   image: "/images/produse/masa-coman/imagine-01-ansamblu.webp",
   keywords: [

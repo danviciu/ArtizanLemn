@@ -67,5 +67,13 @@ export function getOptionalWhatsAppPhoneNumberId() {
 
 export function getRateLimitIpSalt() {
   const configuredSalt = process.env.RATE_LIMIT_IP_SALT?.trim();
-  return configuredSalt || DEFAULT_RATE_LIMIT_IP_SALT;
+  if (configuredSalt) {
+    return configuredSalt;
+  }
+
+  if (process.env.NODE_ENV === "production") {
+    throw new Error("Lipseste variabila de mediu obligatorie: RATE_LIMIT_IP_SALT");
+  }
+
+  return DEFAULT_RATE_LIMIT_IP_SALT;
 }

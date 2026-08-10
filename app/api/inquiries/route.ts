@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { sendInquiryNotification } from "@/lib/email/sendInquiryNotification";
-import { isInquiryRequestRateLimited } from "@/lib/inquiries/rate-limit";
+import { getClientIp, isInquiryRequestRateLimited } from "@/lib/inquiries/rate-limit";
 import { createSupabaseServiceRoleClient } from "@/lib/supabase/server";
 import {
   inquirySchema,
@@ -38,23 +38,6 @@ type FlattenedFormErrors = {
 function getTextField(formData: FormData, field: string) {
   const rawValue = formData.get(field);
   return typeof rawValue === "string" ? rawValue : "";
-}
-
-function getClientIp(request: Request) {
-  const forwardedFor = request.headers.get("x-forwarded-for");
-  if (forwardedFor) {
-    const first = forwardedFor.split(",")[0]?.trim();
-    if (first) {
-      return first;
-    }
-  }
-
-  const realIp = request.headers.get("x-real-ip")?.trim();
-  if (realIp) {
-    return realIp;
-  }
-
-  return "unknown";
 }
 
 function getOptionalValue(value?: string) {

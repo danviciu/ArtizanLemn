@@ -8,8 +8,15 @@ const CONSENT_COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 365;
 
 function resolveRedirectTarget(request: NextRequest) {
   const next = request.nextUrl.searchParams.get("next");
-  if (next && next.startsWith("/")) {
-    return new URL(next, request.nextUrl.origin);
+  if (next) {
+    try {
+      const candidate = new URL(next, request.nextUrl.origin);
+      if (candidate.origin === request.nextUrl.origin) {
+        return candidate;
+      }
+    } catch {
+      // Fall through to the referer-based fallback below.
+    }
   }
 
   const referer = request.headers.get("referer");

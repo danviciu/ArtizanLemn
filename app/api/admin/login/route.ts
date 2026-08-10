@@ -6,8 +6,12 @@ import {
   sanitizeAdminRedirectPath,
   verifyAdminCredentials,
 } from "@/lib/admin/auth";
+import { getClientIp, isInquiryRequestRateLimited } from "@/lib/inquiries/rate-limit";
 
 export const runtime = "nodejs";
+
+const LOGIN_RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const LOGIN_RATE_LIMIT_MAX_ATTEMPTS = 5;
 
 type AdminLoginPayload = {
   username?: string;
@@ -25,6 +29,23 @@ function normalizePayload(payload: AdminLoginPayload) {
 
 export async function POST(request: Request) {
   try {
+    const clientIp = getClientIp(request);
+    const isRateLimited = await isInquiryRequestRateLimited(`admin-login:${clientIp}`, {
+      windowMs: LOGIN_RATE_LIMIT_WINDOW_MS,
+      maxRequests: LOGIN_RATE_LIMIT_MAX_ATTEMPTS,
+    });
+
+    if (isRateLimited) {
+      return NextResponse.json(
+        {
+          success: false,
+          message:
+            "Prea multe incercari de autentificare. Te rugam sa incerci din nou in cateva minute.",
+        },
+        { status: 429 },
+      );
+    }
+
     const payload = (await request.json()) as AdminLoginPayload;
     const normalizedPayload = normalizePayload(payload);
     const credentials = verifyAdminCredentials(
